@@ -2,23 +2,29 @@ package co.edu.cue.finalproyect.service.Impl;
 
 import co.edu.cue.finalproyect.Model.Car;
 import co.edu.cue.finalproyect.Model.CarDTO;
+import co.edu.cue.finalproyect.persistencia.Persistencia;
 import co.edu.cue.finalproyect.service.CarService;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CarServiceImpl implements CarService {
-    ArrayList<Car> carArrayList = new ArrayList<>();
+   ArrayList<Car> carArrayList = new ArrayList<>();
     HashMap<String,Car> carHashMap = new HashMap<String,Car>();
 
     //crea un carro  y lo añade a la lista
     // En ese caso como son carros me parecio interesante que el identificador fuera la misma placa aunque como la logica
     // no esta desarrolladora no se que tan optimo podría ser que este sea el identificador y no un dato
 
-    public void create(String name, String type, String ubication, String plate, double price, double days){
-       // new Car(name,type,ubication,plate,price,days);
-        carHashMap.put(plate,new Car(name, type, ubication, price, days));
+    public void create(String name, String type, String ubication, String plate, double price, double days, String model,
+                       String brand, ImageView linkImage) throws IOException {
+        carArrayList.add(new Car(linkImage,plate,name,type,ubication,price,model,brand));
+        Persistencia.saveCar(carArrayList);
+        carHashMap.put(plate,new Car(linkImage,plate,name, type, ubication, price, model,brand));
     }
     // elimina un objeto con el identificador
     public void eliminate(String plate){
