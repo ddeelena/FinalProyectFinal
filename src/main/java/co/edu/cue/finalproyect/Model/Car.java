@@ -121,13 +121,6 @@ public class Car {
         this.price = price;
     }
 
-    public double getDays() {
-        return days;
-    }
-
-    public void setDays(double days) {
-        this.days = days;
-    }
 
     public String getModel() {
         return model;
@@ -163,8 +156,8 @@ public class Car {
         this.plate = plate;
     }
 
-    public Car( ImageView image,String plate, String name, String type, String ubication, double price, String model, String brand) {
-        this.linkImage = image;
+    public Car(ImageView linkImage, String plate, String name, String type, String ubication, double price, String model, String brand) {
+        this.linkImage = linkImage;
         this.plate = plate;
         this.name = name;
         this.type = type;
@@ -176,4 +169,5 @@ public class Car {
     public Car(){
         super();
     }
+
 }

@@ -1,6 +1,8 @@
 package co.edu.cue.finalproyect.controller;
 
+import co.edu.cue.finalproyect.HelloApplication;
 import co.edu.cue.finalproyect.Model.Car;
+import co.edu.cue.finalproyect.persistencia.Persistencia;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,10 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CarTableViewController implements Initializable {
@@ -37,8 +42,8 @@ public class CarTableViewController implements Initializable {
     private TableColumn<Car, ?> type;
 
     @FXML
-    void selectCar(ActionEvent event) {
-
+    void selectCar(ActionEvent event) throws IOException {
+        HelloApplication.login(event);
     }
 
     private final  ObservableList<Car> data = FXCollections.observableArrayList();
@@ -52,12 +57,23 @@ public class CarTableViewController implements Initializable {
         photo.setCellValueFactory(new PropertyValueFactory<>("linkPhoto"));
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
 
+
        // ImageView image = new ImageView(new Image(("photos/kia.jpg")));
         //Image image = new Image(("@photos/kia.jpg"));
-        ImageView image2 = new ImageView(new Image("/resources/co/edu/cue/finalproyect/photos/Logo.png"));
-        Car car = new Car(image2,"xds 234","kia","moto","armenia",4000,"fer","kia");
-        data.add(car);
-
+       // ImageView image2 = new ImageView(new Image("/resources/co/edu/cue/finalproyect/photos/Logo.png"));
+        try {
+            cargarTable();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }catch (NullPointerException e){
+            System.out.println("arreglo vacio");
+        }
+    }
+    public  void cargarTable() throws IOException {
+        ArrayList<Car> car = Persistencia.cargarRecursoTiendaXML();
+        for (Car c: car) {
+            data.add(c);
+        }
         tableCar.setItems(data);
     }
 
