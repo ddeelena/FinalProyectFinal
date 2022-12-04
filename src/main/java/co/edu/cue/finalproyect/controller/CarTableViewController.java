@@ -40,9 +40,15 @@ public class CarTableViewController implements Initializable {
 
     @FXML
     private TableColumn<Car, ?> type;
+    @FXML
+    void turnOffList(ActionEvent event) throws IOException {
+        HelloApplication.init(event);
+    }
 
     @FXML
     void selectCar(ActionEvent event) throws IOException {
+        Car car = mfc.select(tableCar);
+        mfc.carSelect(car);
         HelloApplication.login(event);
     }
 
@@ -57,10 +63,6 @@ public class CarTableViewController implements Initializable {
         photo.setCellValueFactory(new PropertyValueFactory<>("linkPhoto"));
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
 
-
-       // ImageView image = new ImageView(new Image(("photos/kia.jpg")));
-        //Image image = new Image(("@photos/kia.jpg"));
-       // ImageView image2 = new ImageView(new Image("/resources/co/edu/cue/finalproyect/photos/Logo.png"));
         try {
             cargarTable();
         } catch (IOException e) {
@@ -70,11 +72,11 @@ public class CarTableViewController implements Initializable {
         }
     }
     public  void cargarTable() throws IOException {
-        ArrayList<Car> car = Persistencia.cargarRecursoTiendaXML();
-        for (Car c: car) {
-            data.add(c);
-        }
+        Car car = Persistencia.cargarRecursoTiendaXML();
+            data.add(car);
+
         tableCar.setItems(data);
+        tableCar.refresh();
     }
 
 }

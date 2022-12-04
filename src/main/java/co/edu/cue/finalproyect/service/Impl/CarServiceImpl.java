@@ -11,26 +11,16 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class CarServiceImpl implements CarService {
-   ArrayList<Car> carArrayList = new ArrayList<>();
-    HashMap<String,Car> carHashMap = new HashMap<String,Car>();
+    Car carSelect= new Car();
+    HashMap<String,Car> carHashMap = new HashMap<>();
     ObservableList<Car> carObservableList = FXCollections.observableArrayList();
-
-    public ArrayList<Car> getCarArrayList() {
-        return carArrayList;
-    }
 
     public HashMap<String, Car> getCarHashMap() {
         return carHashMap;
     }
-
-    public ObservableList<Car> getCarObservableList() {
-        return carObservableList;
-    }
-
     //crea un carro  y lo añade a la lista
     // En ese caso como son carros me parecio interesante que el identificador fuera la misma placa aunque como la logica
     // no esta desarrolladora no se que tan optimo podría ser que este sea el identificador y no un dato
@@ -48,14 +38,52 @@ public class CarServiceImpl implements CarService {
         tableView.setItems(carObservableList);
         tableView.refresh();
     }
-
-
+    @Override
+    public Car selectCar(TableView<Car> tblCar){
+       return carSelect = tblCar.getSelectionModel().getSelectedItem();
+    }
+    public Car search(String plate){
+        for(Map.Entry<String, Car> entrada: carHashMap.entrySet()) {
+            return entrada.getKey().equals(plate) ? entrada.getValue() : null;
+        }
+        return null;
+    }
     // elimina un objeto con el identificador
     public void eliminate(String plate){
         carHashMap.remove(plate);
     }
+    public void edit(Car car, TableView<Car> tblCar){
+        try {
+            if(!carObservableList.contains(car)){
+                editCar(car);
+            }
+
+        }catch (NumberFormatException e){
+
+        }catch (NullPointerException ex){
+
+        }
+    }
+    public void editCar(Car car){
+        for(Map.Entry<String, Car> entrada: carHashMap.entrySet()) {
+            if(entrada.getValue().equals(car)){
+
+                entrada.getValue().setLinkImage(car.getLinkImage());
+                entrada.getValue().setPrice(car.getPrice());
+                entrada.getValue().setPlate(car.getPlate());
+                entrada.getValue().setUbication(car.getUbication());
+                entrada.getValue().setName(car.getName());
+                entrada.getValue().setModel(car.getModel());
+                entrada.getValue().setType(car.getType());
+                entrada.getValue().setBrand(car.getBrand());
+            }
+        }
+    }
+    public void fillInput(){
+
+    }
     // recorre por medio de un foreach
-    public void wander(){
+ /*   public void wander(){
         for(Map.Entry<String, Car> entrada: carHashMap.entrySet()) {
             String clave= entrada.getKey();
             Car car=entrada.getValue();
@@ -89,9 +117,9 @@ public class CarServiceImpl implements CarService {
     }
 
     //busca un carro por nombre
-    public Stream<Car> search(String name){
+    public Stream<Car> searchArray(String plate){
         return carArrayList.stream()
-                .filter(c-> name.equalsIgnoreCase(c.getName()))
+                .filter(c-> plate.equalsIgnoreCase(c.getName()))
                 .limit(1);
     }
 
@@ -100,6 +128,6 @@ public class CarServiceImpl implements CarService {
         return  carArrayList.stream()
                 .map(c-> new CarDTO(c.getName(),c.getPrice()))
                 .collect(Collectors.toList());
-    }
+    }*/
 
 }

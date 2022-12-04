@@ -1,5 +1,6 @@
 package co.edu.cue.finalproyect.controller;
 
+import co.edu.cue.finalproyect.Model.Car;
 import co.edu.cue.finalproyect.Model.Person;
 import co.edu.cue.finalproyect.service.Impl.RentCarServiceImpl;
 import co.edu.cue.finalproyect.service.ModelFactoryControllerService;
@@ -8,6 +9,7 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class ModelFactoryController implements ModelFactoryControllerService {
@@ -30,6 +32,9 @@ public class ModelFactoryController implements ModelFactoryControllerService {
            return rentCarService.getPersonService().getArrayList();
 
         }
+        public HashMap<String,Car> getHashMap(){
+            return rentCarService.getCarService().getCarHashMap();
+        }
         public void init (){
             rentCarService.getPersonService().init();
         }
@@ -48,6 +53,12 @@ public class ModelFactoryController implements ModelFactoryControllerService {
         }
         public void createClient(String name, String id, String cellphone, String gender, String user, String password, String direction, String location){
             rentCarService.getPersonService().createClient(name, id, cellphone, gender, user, password, direction, location);
+        }
+       public void carSelect(Car car) {
+           rentCarService.getLoanService().carSelect(car);
+       }
+        public Car select(TableView<Car> tblCar){
+            return rentCarService.getCarService().selectCar(tblCar);
         }
 
 

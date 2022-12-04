@@ -8,6 +8,8 @@ public class Person {
     private String user;
     private String password;
 
+    private boolean condition;
+
 
     public String getName() {
         return name;
@@ -57,12 +59,21 @@ public class Person {
         this.password = password;
     }
 
-    public Person(String name, String id, String cellphone, String gender, String user, String password) {
+    public boolean isCondition() {
+        return condition;
+    }
+
+    public void setCondition(boolean condition) {
+        this.condition = condition;
+    }
+
+    public Person(String name, String id, String cellphone, String gender, String user, String password, boolean state) {
         this.name = name;
         this.id = id;
         this.cellphone = cellphone;
         this.gender = gender;
         this.user = user;
         this.password = password;
+        this.condition = state;
     }
 }
