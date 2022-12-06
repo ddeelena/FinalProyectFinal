@@ -1,6 +1,6 @@
 package co.edu.cue.finalproyect.service.Impl;
 
-import co.edu.cue.finalproyect.Model.Car;
+import co.edu.cue.finalproyect.model.Car;
 
 import java.util.Comparator;
 

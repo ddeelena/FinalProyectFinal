@@ -1,4 +1,4 @@
-package co.edu.cue.finalproyect.Model;
+package co.edu.cue.finalproyect.model;
 
 public class Detail {
     private Car car;

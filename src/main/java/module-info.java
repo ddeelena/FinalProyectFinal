@@ -7,8 +7,8 @@ module co.edu.cue.finalproyect {
 
     exports co.edu.cue.finalproyect;
     exports co.edu.cue.finalproyect.controller to javafx.fxml;
-    exports co.edu.cue.finalproyect.Model to javafx.fxml;
-    opens co.edu.cue.finalproyect.Model to javafx.base;
+    exports co.edu.cue.finalproyect.model to javafx.fxml;
+    opens co.edu.cue.finalproyect.model to javafx.base;
     opens co.edu.cue.finalproyect.controller to javafx.fxml;
     opens co.edu.cue.finalproyect to javafx.graphics;
 }

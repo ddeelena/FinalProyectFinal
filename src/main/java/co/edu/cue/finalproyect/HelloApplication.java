@@ -41,7 +41,7 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
     }
-    public static void loan(javafx.event.ActionEvent event) throws IOException {
+    public static void ViewLn(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("loanView.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(fxmlLoader.load());
@@ -66,7 +66,22 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-
+    public static void user(javafx.event.ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("userView.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load());
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        stage.setScene(scene);
+        stage.show();
+    }
+    public static void seeC(javafx.event.ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("listUserView.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(fxmlLoader.load());
+        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
+        stage.setScene(scene);
+        stage.show();
+    }
     public static void main(String[] args) {
         launch(args);
     }

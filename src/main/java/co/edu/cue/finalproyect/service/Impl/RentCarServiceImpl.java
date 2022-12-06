@@ -1,12 +1,9 @@
 package co.edu.cue.finalproyect.service.Impl;
 
-import co.edu.cue.finalproyect.Model.Person;
 import co.edu.cue.finalproyect.service.CarService;
 import co.edu.cue.finalproyect.service.LoanService;
 import co.edu.cue.finalproyect.service.LoginService;
 import co.edu.cue.finalproyect.service.PersonService;
-
-import java.util.ArrayList;
 
 public class RentCarServiceImpl {
     private final CarService carService;

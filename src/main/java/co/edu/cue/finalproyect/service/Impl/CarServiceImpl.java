@@ -1,12 +1,13 @@
 package co.edu.cue.finalproyect.service.Impl;
 
-import co.edu.cue.finalproyect.Model.Car;
-import co.edu.cue.finalproyect.Model.CarDTO;
+import co.edu.cue.finalproyect.model.Car;
 import co.edu.cue.finalproyect.persistencia.Persistencia;
 import co.edu.cue.finalproyect.service.CarService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
@@ -15,8 +16,12 @@ import java.util.*;
 
 public class CarServiceImpl implements CarService {
     Car carSelect= new Car();
+
+    public Car getCarSelect() {
+        return carSelect;
+    }
+
     HashMap<String,Car> carHashMap = new HashMap<>();
-    ObservableList<Car> carObservableList = FXCollections.observableArrayList();
 
     public HashMap<String, Car> getCarHashMap() {
         return carHashMap;
@@ -26,9 +31,9 @@ public class CarServiceImpl implements CarService {
     // no esta desarrolladora no se que tan optimo podría ser que este sea el identificador y no un dato
 
     public void create(String name, String type, String ubication, String plate, double price, String model,
-                       String brand, TableView tableView, ImageView linkimage, String thumbUrl) throws IOException {
+                       String brand, TableView<Car> tableView, ImageView linkimage, String thumbUrl, boolean state,ObservableList carObservableList) throws IOException {
         //carArrayList.add(new Car(linkImage,plate,name,type,ubication,price,model,brand));
-        Car car = new Car(linkimage,plate,name, type, ubication, price, model,brand);
+        Car car = new Car(linkimage,plate,name, type, ubication, price, model,brand, state);
         System.out.println(linkimage);
         carHashMap.put(plate,car);
        // Persistencia.saveCar(carHashMap,thumbUrl);
@@ -38,24 +43,39 @@ public class CarServiceImpl implements CarService {
         tableView.setItems(carObservableList);
         tableView.refresh();
     }
-    @Override
-    public Car selectCar(TableView<Car> tblCar){
-       return carSelect = tblCar.getSelectionModel().getSelectedItem();
+
+    public void selectCar(TableView<Car> tblCar, TextField nameCar, TextField ubicationCar, TextField priceCar,TextField plateCar, ChoiceBox brandCar, ChoiceBox modelCar, ChoiceBox stateCar, ChoiceBox typeCar){
+        carSelect = tblCar.getSelectionModel().getSelectedItem();
+        fillInput(nameCar,ubicationCar,priceCar,plateCar,brandCar,modelCar,stateCar,typeCar);
     }
-    public Car search(String plate){
+    public Car getCarSelect(TableView<Car> tblCar){
+        return carSelect = tblCar.getSelectionModel().getSelectedItem();
+    }
+    public void search(TableView<Car> tblCar, String plate, TextField nameCar, TextField ubicationCar, TextField priceCar,TextField plateCar, ChoiceBox brandCar, ChoiceBox modelCar, ChoiceBox stateCar, ChoiceBox typeCar){
         for(Map.Entry<String, Car> entrada: carHashMap.entrySet()) {
-            return entrada.getKey().equals(plate) ? entrada.getValue() : null;
+            if(entrada.getKey().equals(plate)){
+                selectCar(tblCar, nameCar, ubicationCar, priceCar, plateCar, brandCar, modelCar, stateCar, typeCar);
+                tblCar.getSelectionModel().getSelectedItem();
+                tblCar.refresh();
+            }
         }
-        return null;
     }
-    // elimina un objeto con el identificador
-    public void eliminate(String plate){
-        carHashMap.remove(plate);
+
+    public void eliminate(TableView<Car> tblCar, ObservableList carObservableList){
+        if(carSelect != null){
+            carObservableList.remove(carSelect);
+            carHashMap.remove(carSelect.getPlate());
+            tblCar.refresh();
+        }else{
+
+        }
     }
-    public void edit(Car car, TableView<Car> tblCar){
+    public void edit(Car car, TableView<Car> tblCar, ObservableList carObservableList){
         try {
             if(!carObservableList.contains(car)){
                 editCar(car);
+                editTable(car);
+                tblCar.refresh();
             }
 
         }catch (NumberFormatException e){
@@ -64,10 +84,21 @@ public class CarServiceImpl implements CarService {
 
         }
     }
+    public void editTable(Car car ){
+       carSelect.setState(car.isState());
+       carSelect.setBrand(car.getBrand());
+       carSelect.setModel(car.getModel());
+       carSelect.setLinkImage(car.getLinkImage());
+       carSelect.setName(car.getName());
+       carSelect.setType(car.getType());
+       carSelect.setPlate(car.getPlate());
+       carSelect.setUbication(car.getUbication());
+       carSelect.setPrice(car.getPrice());
+    }
     public void editCar(Car car){
         for(Map.Entry<String, Car> entrada: carHashMap.entrySet()) {
             if(entrada.getValue().equals(car)){
-
+                entrada.getValue().setState(car.isState());
                 entrada.getValue().setLinkImage(car.getLinkImage());
                 entrada.getValue().setPrice(car.getPrice());
                 entrada.getValue().setPlate(car.getPlate());
@@ -79,8 +110,15 @@ public class CarServiceImpl implements CarService {
             }
         }
     }
-    public void fillInput(){
-
+    public void fillInput(TextField nameCar, TextField ubicationCar, TextField priceCar,TextField plateCar, ChoiceBox brandCar, ChoiceBox modelCar, ChoiceBox stateCar, ChoiceBox typeCar){
+        nameCar.setText(String.valueOf(carSelect.getName()));
+        ubicationCar.setText(String.valueOf(carSelect.getUbication()));
+        priceCar.setText(String.valueOf(carSelect.getPrice()));
+        plateCar.setText(String.valueOf(carSelect.getPlate()));
+        brandCar.setValue(carSelect.getBrand());
+        modelCar.setValue(carSelect.getModel());
+        stateCar.setValue(carSelect.isState());
+        typeCar.setValue(carSelect.getType());
     }
     // recorre por medio de un foreach
  /*   public void wander(){

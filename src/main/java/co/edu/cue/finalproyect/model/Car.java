@@ -1,11 +1,6 @@
-package co.edu.cue.finalproyect.Model;
+package co.edu.cue.finalproyect.model;
 
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import java.util.Comparator;
 
 public class Car {
 /*    private ImageView linkImage;
@@ -84,7 +79,7 @@ public class Car {
     private String ubication;
 
     private double price;
-    private double days;
+    private boolean state;
     private String model;
     private String  brand;
 
@@ -156,7 +151,15 @@ public class Car {
         this.plate = plate;
     }
 
-    public Car(ImageView linkImage, String plate, String name, String type, String ubication, double price, String model, String brand) {
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
+
+    public Car(ImageView linkImage, String plate, String name, String type, String ubication, double price, String model, String brand, boolean state) {
         this.linkImage = linkImage;
         this.plate = plate;
         this.name = name;
@@ -165,6 +168,7 @@ public class Car {
         this.price = price;
         this.model = model;
         this.brand = brand;
+        this.state = state;
     }
     public Car(){
         super();

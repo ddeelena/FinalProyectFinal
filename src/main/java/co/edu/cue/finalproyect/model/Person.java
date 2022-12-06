@@ -1,4 +1,4 @@
-package co.edu.cue.finalproyect.Model;
+package co.edu.cue.finalproyect.model;
 
 public class Person {
     private String name;
@@ -9,6 +9,10 @@ public class Person {
     private String password;
 
     private boolean condition;
+
+    public Person() {
+
+    }
 
 
     public String getName() {
