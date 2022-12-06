@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="541.0" prefWidth="743.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.cue.finalproyect.controller.LoanCarViewController">
+   <children>
+      <ImageView fx:id="imageCar" fitHeight="137.0" fitWidth="200.0" layoutX="28.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photos/kia.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="nameUser" contentDisplay="CENTER" layoutX="251.0" layoutY="53.0" prefHeight="32.0" prefWidth="102.0" style="-fx-text-fill: #ffffff;" text="Nombre Usuario" textFill="WHITE" />
+      <Label fx:id="idUser" layoutX="268.0" layoutY="129.0" prefHeight="25.0" prefWidth="102.0" text="Documento" textFill="WHITE" />
+      <Label fx:id="nameCar" contentDisplay="CENTER" layoutX="430.0" layoutY="52.0" prefHeight="17.0" prefWidth="189.0" style="-fx-text-fill: #ffffff;" text="Nombre Carro" textFill="WHITE" />
+      <Label fx:id="priceCar" layoutX="430.0" layoutY="105.0" text="Precio " textFill="WHITE" />
+      <Label fx:id="brandCar" layoutX="431.0" layoutY="154.0" text="Marca" textFill="WHITE" />
+      <ChoiceBox fx:id="typeCount" layoutX="151.0" layoutY="368.0" prefWidth="150.0" />
+      <TextField fx:id="numberCount" layoutX="153.0" layoutY="328.0" promptText="numero de la tarjeta" />
+      <Label layoutX="26.0" layoutY="332.0" text="Numero de cuenta " textFill="WHITE" />
+      <Label layoutX="52.0" layoutY="372.0" text="Tipo de cuenta " textFill="WHITE" />
+      <Button layoutX="421.0" layoutY="451.0" mnemonicParsing="false" onAction="#readyLoan" prefHeight="32.0" prefWidth="134.0" style="-fx-border-radius: 50%;" text="Realizar Prestamo" />
+      <ImageView fitHeight="106.0" fitWidth="102.0" layoutX="636.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@photos/logo.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="226.0" layoutY="448.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="144.0" text="Añadir elementos extras" />
+      <ChoiceBox layoutX="151.0" layoutY="248.0" prefWidth="150.0" />
+      <ChoiceBox layoutX="152.0" layoutY="292.0" prefWidth="150.0" />
+      <Label layoutX="14.0" layoutY="252.0" text="Lugar donde se recoge " textFill="WHITE" />
+      <Label layoutX="14.0" layoutY="296.0" text="Lugar donde se entrega" textFill="WHITE" />
+      <Button layoutX="24.0" layoutY="495.0" mnemonicParsing="false" onAction="#returnSelect" text="Atrás " />
+      <Button layoutX="465.0" layoutY="262.0" mnemonicParsing="false" onAction="#asiento" prefHeight="61.0" prefWidth="168.0" text="Asiento para niños">
+         <graphic>
+            <ImageView fitHeight="53.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@photos/asiento.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="465.0" layoutY="338.0" mnemonicParsing="false" onAction="#porta" prefHeight="61.0" prefWidth="168.0" text="Portabicicletas">
+         <graphic>
+            <ImageView fitHeight="53.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@photos/poratabicic.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="345.0" layoutY="54.0" mnemonicParsing="false" onAction="#editUser" prefHeight="30.0" prefWidth="36.0" text="Editar">
+         <graphic>
+            <ImageView fitHeight="150.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@photos/editar.jpg" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="464.0" layoutY="217.0" text="Añadir articulos adicionales" textFill="WHITE" />
+   </children>
+</Pane>
