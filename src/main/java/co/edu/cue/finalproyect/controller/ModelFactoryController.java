@@ -32,7 +32,7 @@ public class ModelFactoryController implements ModelFactoryControllerService {
             System.out.println("invocación clase singleton");
             rentCarService = new RentCarServiceImpl();
         }
-        public  ArrayList<Person> getArrayList(){
+        public  ArrayList<Client> getArrayList(){
            return rentCarService.getPersonService().getArrayList();
 
         }
@@ -40,20 +40,21 @@ public class ModelFactoryController implements ModelFactoryControllerService {
             return rentCarService.getCarService().getCarHashMap();
         }
         public void init () throws IOException {
+            System.out.println("mfc llamado");
             rentCarService.getPersonService().init();
         }
         public void createCar(String name, String type, String ubication, String plate, double price, String model,
                               String brand, TableView<Car> tableView, ImageView linkImage, String thumbUrl, boolean state,ObservableList carObservableList) throws IOException {
             rentCarService.getCarService().create(name, type, ubication, plate, price, model, brand,tableView,linkImage,thumbUrl, state,carObservableList);
         }
-        public Boolean login(String userRegis, String passwordRegis, ArrayList<Person> arrayList){
+        public Boolean login(String userRegis, String passwordRegis, ArrayList<Client> arrayList){
             return rentCarService.getLoginService().login(userRegis, passwordRegis, arrayList);
         }
         public Boolean comprobationPassword(String pass, String pass2){
             return rentCarService.getLoginService().comprobationPassword(pass, pass2);
         }
-        public Boolean comprobationAdmi(ArrayList<Person> arrayList){
-            return rentCarService.getLoginService().comprobationAdmi(arrayList);
+        public Boolean loginAdmi (String userRegis, String passwordRegis, ArrayList<Administrative> arrayList){
+            return rentCarService.getLoginService().loginAdmi(userRegis, passwordRegis, arrayList);
         }
         public void createClient(String name, String id, String cellphone, String gender, String user, String password, String direction, String location) throws IOException {
             rentCarService.getPersonService().createClient(name, id, cellphone, gender, user, password, direction, location);
@@ -103,5 +104,14 @@ public class ModelFactoryController implements ModelFactoryControllerService {
         }
         public ArrayList<LoanDTO> genereDTO(){
             return rentCarService.getLoanService().genereDTO();
+        }
+        public void selectLoan(TableView<LoanDTO> tblLoan){
+            rentCarService.getLoanService().select(tblLoan);
+        }
+        public void eliminateLoan(TableView<LoanDTO> tblLoan,ObservableList<LoanDTO> observableList){
+            rentCarService.getLoanService().eliminateLoan(tblLoan, observableList);
+        }
+        public ArrayList<Administrative> getAdministrativeArrayList(){
+            return rentCarService.getPersonService().getAdministrativeArrayList();
         }
 }

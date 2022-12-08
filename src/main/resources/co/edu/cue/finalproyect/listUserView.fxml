@@ -11,10 +11,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="766.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.cue.finalproyect.controller.ListUserViewController">
    <children>
-      <ImageView fitHeight="104.0" fitWidth="106.0" layoutX="655.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="104.0" fitWidth="106.0" layoutX="662.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@photos/logo.png" />
          </image>
@@ -27,14 +26,13 @@
       </Label>
       <ScrollPane layoutX="39.0" layoutY="96.0" prefHeight="414.0" prefWidth="689.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="442.0" prefWidth="710.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="694.0" style="-fx-background-color: #831A1A;">
                <children>
                   <TableView fx:id="tableUser" prefHeight="425.0" prefWidth="696.0" style="-fx-background-color: #831A1A;">
                     <columns>
-                      <TableColumn fx:id="nameUser" prefWidth="173.60000228881836" text="Nombre" />
-                      <TableColumn fx:id="idUser" minWidth="0.0" prefWidth="143.2000274658203" text="Identificación" />
-                        <TableColumn fx:id="cityUser" prefWidth="179.20001220703125" text="Ciudad" />
-                        <TableColumn fx:id="cellphoneUser" prefWidth="170.4000244140625" text="Celular" />
+                      <TableColumn fx:id="nameUser" prefWidth="247.2000511288643" text="Nombre" />
+                      <TableColumn fx:id="idUser" minWidth="0.0" prefWidth="229.59999084472656" text="Identificación" />
+                        <TableColumn fx:id="cellphoneUser" prefWidth="200.0" text="Celular" />
                     </columns>
                   </TableView>
                </children>

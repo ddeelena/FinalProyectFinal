@@ -7,31 +7,6 @@ import java.util.ArrayList;
 
 public class ArchiveUsefulPerson {
 
-/*    public static Object cargarRecursoSerializadoXML(String rutaArchivo) throws IOException {
-
-       XMLDecoder decodificadorXML;
-        Object objetoXML;
-
-        decodificadorXML = new XMLDecoder(new FileInputStream(rutaArchivo));
-        objetoXML = decodificadorXML.readObject();
-        decodificadorXML.close();
-        return objetoXML;
-
-    }
-
-    public static void salvarRecursoSerializadoXML(String rutaArchivo, Object objeto) throws IOException {
-
-        XMLEncoder codificadorXML;
-
-        codificadorXML = new XMLEncoder(new FileOutputStream(rutaArchivo));
-        codificadorXML.writeObject(objeto);
-        codificadorXML.close();
-
-    }*/
-
-
-        //ESTE METODO GUARDA EN UNA VARIABLE EL CONTENIDO ORDENADO DE EL ARCHIVO .TXT
-        //TENIENDO ESTA INFORMACION EN UNA CADENA DE STRINGS SERA MAS FACIL REESTRUCTURAR LA INFORMACION
         public static ArrayList<String> leerArchivo(String ruta) throws IOException {
 
             ArrayList<String> contenido = new ArrayList<String>();

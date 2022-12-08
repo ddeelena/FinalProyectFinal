@@ -67,8 +67,8 @@ public class CarTableViewController implements Initializable {
         photo.setCellValueFactory(new PropertyValueFactory<>("linkPhoto"));
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
        // init();
-       // mfc.fillTable(data);
-        //tableCar.setItems(data);
+         mfc.fillTable(data);
+         tableCar.setItems(data);
 /*        try {
             cargarTable();
         } catch (IOException e) {

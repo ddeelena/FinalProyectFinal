@@ -21,9 +21,7 @@ import java.util.concurrent.TimeUnit;
 public class StartViewController implements Initializable {
     CompletableFuture completableFuture = new CompletableFuture<>();
     ModelFactoryController mfc =  ModelFactoryController.getInstance();
-
     ObservableList<String> citys = FXCollections.observableArrayList("Armenia","Bogota","Pereira");
-
 
     LocalDate dateSince;
     LocalDate dateUntil;
@@ -54,11 +52,13 @@ public class StartViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("initialize ");
         countryChoise.setValue("Colombia");
         cityChoise.setValue("Bogota");
         cityChoise.setItems(citys);
         CompletableFuture.runAsync(()-> {
             try {
+                System.out.println("llamado");
                 mfc.init();
             } catch (IOException e) {
                 throw new RuntimeException(e);

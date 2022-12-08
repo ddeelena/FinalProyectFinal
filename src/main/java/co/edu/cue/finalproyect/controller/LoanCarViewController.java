@@ -94,14 +94,14 @@ public class LoanCarViewController implements Initializable {
         setLabel();
     }
     public void setLabel(){
-       // Car car = mfc.getCarSelect();
+        Car car = mfc.getCarSelect();
         Client client = mfc.getClient();
         nameUser.setText(client.getName());
         idUser.setText(client.getId());
-/*       nameCar.setText(car.getName());
+        nameCar.setText(car.getName());
         imageCar.setImage(car.getLinkImage().getImage());
         priceCar.setText(String.valueOf(car.getPrice()));
-        brandCar.setText(car.getBrand());*/
+        brandCar.setText(car.getBrand());
     }
     public void getData(){
         Aplate = String.valueOf(placeAChoisebox.getValue());

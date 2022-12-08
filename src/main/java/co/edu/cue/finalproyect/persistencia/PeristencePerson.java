@@ -10,55 +10,28 @@ import java.util.ArrayList;
 import static co.edu.cue.finalproyect.persistencia.ArchivoUtil.salvarRecursoSerializadoXML;
 
 public class PeristencePerson {
-  //  public static final String RUTA_ARCHIVO_TIENDA = "src/main/resources/user.xml";
-
-/*    public static Person cargarRecursoTiendaXML() {
-        Person person = null;
-        try {
-            person = (Person) ArchiveUsefulPerson.cargarRecursoSerializadoXML(RUTA_ARCHIVO_TIENDA);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return person;
-    }
-
-
-
-    public static void guardarRecursoBancoXML(Person tienda) {
-        try {
-            System.out.println("++++++++++"+tienda.getName()+"+++++++++");
-            ArchivoUtil.salvarRecursoSerializadoXML(RUTA_ARCHIVO_TIENDA, tienda);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }*/
-
 
         public static final String RUTA_ARCHIVO_CLIENTES = "src/main/resources/clientes.txt";
 
-        public static void guardarClientes(ArrayList<Person> listaClientes) throws IOException {
+        public static void guardarClientes(ArrayList<Client> listaClientes) throws IOException {
 
             String contents = "";
 
-            for(Person cliente: listaClientes) {
-                contents+= cliente.getPassword()+"@"+cliente.getName()+"@"+ "@"+cliente.getCellphone()+"@"+
-                        cliente.getGender()+"@"+cliente.isCondition()+"@"+cliente.getUser()+"@"+cliente.getId();
-                if(cliente instanceof Client){
-                    contents+=  "@"+((Client) cliente).getDirection()+
-                            "@"+ ((Client) cliente).getLocation()+"@"+"\n";
+            for(Client cliente: listaClientes) {
+                contents+= cliente.getPassword()+"@"+cliente.getName()+"@"+cliente.getCellphone()+"@"+
+                        cliente.getGender()+"@"+cliente.isCondition()+"@"+cliente.getUser()+"@"+cliente.getId()+"@"+ cliente.getDirection()+
+                        "@"+cliente.getLocation()+"\n";
                 }
-            }
             ArchiveUsefulPerson.guardarArchivo(RUTA_ARCHIVO_CLIENTES, contents, false);
         }
 
         //METODO PARA CARGAR LOS CLIENTES A PARTIR DEL ARCHIVO
-        public static ArrayList<Person> cargarClientes() throws FileNotFoundException, IOException {
-
-            ArrayList<Person> clientes = new ArrayList<Person>();
+        public static ArrayList<Client> cargarClientes() throws FileNotFoundException, IOException {
+            System.out.println("cargar clientes");
+            ArrayList<Client> clientes = new ArrayList<Client>();
 
             ArrayList<String> contenido = ArchiveUsefulPerson.leerArchivo(RUTA_ARCHIVO_CLIENTES);
+            System.out.println("conteido"+contenido);
             String linea = "";
 
             for (int i = 0;i<contenido.size(); i++) {
@@ -75,9 +48,13 @@ public class PeristencePerson {
                 miCliente.setUser(linea.split("@")[7]);
                 miCliente.setId(linea.split("@")[8]);
 
+                System.out.println("Cliente"+miCliente);
                 clientes.add(miCliente);
             }
-
+            for (Person c:clientes
+                 ) {
+                System.out.println(c);
+            }
             return clientes;
         }
 

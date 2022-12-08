@@ -1,5 +1,6 @@
 package co.edu.cue.finalproyect.service.Impl;
 
+import co.edu.cue.finalproyect.model.Administrative;
 import co.edu.cue.finalproyect.model.Client;
 import co.edu.cue.finalproyect.model.Person;
 import co.edu.cue.finalproyect.service.LoginService;
@@ -7,10 +8,11 @@ import co.edu.cue.finalproyect.service.LoginService;
 import java.util.ArrayList;
 
 public class LoginServiceImpl implements LoginService {
-    ArrayList<Person> arrayList = new ArrayList<>();
+    ArrayList<Client> arrayList = new ArrayList<>();
+    ArrayList<Administrative> arrayListAdmi = new ArrayList<>();
 
     // @Override
-    public Boolean login(String userRegis, String passwordRegis, ArrayList<Person> arrayList){
+    public Boolean login(String userRegis, String passwordRegis, ArrayList<Client> arrayList){
         this.arrayList = arrayList;
         boolean pass = validatePass(passwordRegis);
         boolean us = validateUser(userRegis);
@@ -18,14 +20,14 @@ public class LoginServiceImpl implements LoginService {
         return (pass == true && us == true) ? true : false;
     }
     public Boolean validatePass(String passwordRegis){
-        for (Person person:arrayList) {
+        for (Client person:arrayList) {
             System.out.println(person.getPassword());
             return person.getPassword().equals(passwordRegis) ? true: false;
         }
         return false;
     }
     public Boolean validateUser(String userRegis){
-        for (Person person:arrayList) {
+        for (Client person:arrayList) {
             System.out.println(person.getUser());
             return  person.getUser().equals(userRegis) ? true : false;
         }
@@ -35,11 +37,25 @@ public class LoginServiceImpl implements LoginService {
     public Boolean comprobationPassword(String pass, String pass2){
         return pass.equals(pass2) ? true : false;
     }
-    public Boolean comprobationAdmi(ArrayList<Person> arrayList){
-        for (Person per: arrayList){
-            return per instanceof Client ? true : false;
-        }
-        return null;
+    public Boolean loginAdmi (String userRegis, String passwordRegis, ArrayList<Administrative> arrayList){
+        this.arrayListAdmi = arrayList;
+        boolean pass = validatePassAdmi(passwordRegis);
+        boolean us = validateUserAdmi(userRegis);
+        System.out.println(us+"Admi");
+        return (pass == true && us == true) ? true : false;
     }
-
+    public Boolean validatePassAdmi(String passwordRegis){
+        for (Administrative person:arrayListAdmi) {
+            System.out.println(person.getPassword());
+            return person.getPassword().equals(passwordRegis) ? true: false;
+        }
+        return false;
+    }
+    public Boolean validateUserAdmi(String userRegis){
+        for (Administrative person:arrayListAdmi) {
+            System.out.println(person.getUser());
+            return  person.getUser().equals(userRegis) ? true : false;
+        }
+        return false;
+    }
 }

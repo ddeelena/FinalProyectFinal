@@ -72,14 +72,14 @@ public class LoginUserViewController implements Initializable {
 
     @FXML
     void login(ActionEvent event) throws IOException {
-        Boolean cli = mf.comprobationAdmi(mf.getArrayList());
-        System.out.println(cli);
         Boolean user = mf.login(userLogin.getText(),pasLogin.getText(),mf.getArrayList());
-        System.out.println(user);
-        if(user && cli){
+        System.out.println(userLogin.getText());
+        Boolean admi = mf.loginAdmi(userLogin.getText(),pasLogin.getText(),mf.getAdministrativeArrayList());
+        System.out.println(admi);
+        if(user ){
             mf.identi(pasLogin.getText());
             HelloApplication.ViewLn(event);
-        } else if (user) {
+        } else if (admi) {
             //mf.identi(pasLogin.getText());
             HelloApplication.menu(event);
         }

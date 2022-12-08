@@ -8,6 +8,10 @@ public class Loan {
      private Car car;
      Detail detail;
 
+    public Loan() {
+
+    }
+
      public Client getDebtorName() {
           return debtorName;
      }

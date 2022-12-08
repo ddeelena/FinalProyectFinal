@@ -1,5 +1,6 @@
 package co.edu.cue.finalproyect.service.Impl;
 
+import co.edu.cue.finalproyect.model.Administrative;
 import co.edu.cue.finalproyect.model.Client;
 import co.edu.cue.finalproyect.model.ClientDTO;
 import co.edu.cue.finalproyect.model.Person;
@@ -14,7 +15,16 @@ import java.util.stream.Collectors;
 
 public class PersonServiceImpl implements PersonService {
     Client client = new Client();
-    ArrayList<Person> arrayList = new ArrayList<>();
+    Administrative administrative = new Administrative();
+    ArrayList<Client> arrayList = new ArrayList<>();
+    ArrayList<Administrative> administrativeArrayList = new ArrayList<>();
+
+    public ArrayList<Administrative> getAdministrativeArrayList() {
+        return administrativeArrayList;
+    }
+    public ArrayList<Client> getArrayList() {
+        return arrayList;
+    }
 
     public Client getClient() {
         return client;
@@ -26,17 +36,9 @@ public class PersonServiceImpl implements PersonService {
 
     public void init () throws IOException {
         arrayList = PeristencePerson.cargarClientes();
-        System.out.println(arrayList.get(0).getUser());
-       // Person person = new Person("diana","90","3444","Femenino","dde","dd",false);
-       // arrayList.add(person);
-        Client cliente = new Client("der","123","1234","f","derly","plo","local","armenia",false);
-        //System.out.println(cliente.getPassword() +"   "+person.getPassword());
-        arrayList.add(cliente);
+        administrativeArrayList.add(new Administrative("Der","1902","cell","Femenino","delena","delena",false));
     }
 
-    public ArrayList<Person> getArrayList() {
-        return arrayList;
-    }
 
     //hilos
     public void createClient(String name, String id, String cellphone, String gender, String user, String password, String direction, String location) throws IOException {
