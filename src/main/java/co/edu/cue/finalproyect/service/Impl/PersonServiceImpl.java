@@ -6,8 +6,10 @@ import co.edu.cue.finalproyect.model.Person;
 import co.edu.cue.finalproyect.persistencia.PeristencePerson;
 import co.edu.cue.finalproyect.service.PersonService;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 public class PersonServiceImpl implements PersonService {
@@ -22,11 +24,13 @@ public class PersonServiceImpl implements PersonService {
         this.client = client;
     }
 
-    public void init (){
-        Person person = new Person("diana","90","3444","F","dde","dd",false);
-        //arrayList.add(person);
+    public void init () throws IOException {
+        arrayList = PeristencePerson.cargarClientes();
+        System.out.println(arrayList.get(0).getUser());
+       // Person person = new Person("diana","90","3444","Femenino","dde","dd",false);
+       // arrayList.add(person);
         Client cliente = new Client("der","123","1234","f","derly","plo","local","armenia",false);
-        System.out.println(cliente.getPassword() +"   "+person.getPassword());
+        //System.out.println(cliente.getPassword() +"   "+person.getPassword());
         arrayList.add(cliente);
     }
 
@@ -35,20 +39,27 @@ public class PersonServiceImpl implements PersonService {
     }
 
     //hilos
-    public void createClient(String name, String id, String cellphone, String gender, String user, String password, String direction, String location){
+    public void createClient(String name, String id, String cellphone, String gender, String user, String password, String direction, String location) throws IOException {
         Client client = new Client(name, id, cellphone, gender, user, password, direction, location,false);
-        PeristencePerson.guardarRecursoBancoXML(client);
         arrayList.add(client);
+        CompletableFuture.runAsync(()-> {
+            try {
+                PeristencePerson.guardarClientes(arrayList);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
     public void editClient(String name, String gender,String cellphone, String email, String password){
         editArray(name, gender, cellphone, email, password);
-        for (Person client: arrayList){
+
             client.setName(name);
             client.setCellphone(cellphone);
             client.setGender(gender);
             client.setPassword(password);
             client.setUser(email);
-        }
+            editArray(name, gender, cellphone, email, password);
+
     }
     public void editArray(String name, String gender,String cellphone, String email, String password){
         client.setName(name);
@@ -68,6 +79,7 @@ public class PersonServiceImpl implements PersonService {
             //cli.getPassword().equals(pass) ? client = (Client) cli : ;
             if(cli.getPassword().equals(pass)){
                 client = (Client) cli;
+                client.setCondition(true);
             }
         }
     }

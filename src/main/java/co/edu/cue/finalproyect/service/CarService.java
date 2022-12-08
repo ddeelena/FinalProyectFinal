@@ -21,4 +21,5 @@ public interface CarService {
     void search(TableView<Car> tblCar, String plate, TextField nameCar, TextField ubicationCar,
                 TextField priceCar,TextField plateCar, ChoiceBox brandCar, ChoiceBox modelCar, ChoiceBox stateCar, ChoiceBox typeCar);
     Car getCarSelect();
+    void fillTable(ObservableList<Car> observableList);
 }

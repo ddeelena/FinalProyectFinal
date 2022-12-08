@@ -1,7 +1,5 @@
 package co.edu.cue.finalproyect.execeptions;
 
-import co.edu.cue.finalproyect.service.AlertService;
-
 public class Alert  {
 
      public  void alertError(String message, String title){

@@ -1,59 +1,41 @@
 package co.edu.cue.finalproyect.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Loan {
-     private String debtorName;
-     private String dateLoan;
-     private String deliveryLoan;
-     private String car;
-     ArrayList<Detail> listDetail;
+     private Client debtorName;
+     private Car car;
+     Detail detail;
 
-     public String getDebtorName() {
+     public Client getDebtorName() {
           return debtorName;
      }
 
-     public void setDebtorName(String debtorName) {
+     public void setDebtorName(Client debtorName) {
           this.debtorName = debtorName;
      }
 
-     public String getDateLoan() {
-          return dateLoan;
-     }
 
-     public void setDateLoan(String dateLoan) {
-          this.dateLoan = dateLoan;
-     }
-
-     public String getDeliveryLoan() {
-          return deliveryLoan;
-     }
-
-     public void setDeliveryLoan(String deliveryLoan) {
-          this.deliveryLoan = deliveryLoan;
-     }
-
-     public String getCar() {
+     public Car getCar() {
           return car;
      }
 
-     public void setCar(String car) {
+     public void setCar(Car car) {
           this.car = car;
      }
 
-     public ArrayList<Detail> getListDetail() {
-          return listDetail;
+     public Detail getDetail() {
+          return detail;
      }
 
-     public void setListDetail(ArrayList<Detail> listDetail) {
-          this.listDetail = listDetail;
+     public void setDetail(Detail detail) {
+          this.detail = detail;
      }
 
-     public Loan(String debtorName, String dateLoan, String deliveryLoan, String car, ArrayList<Detail> listDetail) {
+     public Loan(Client debtorName, Car car, Detail detail) {
           this.debtorName = debtorName;
-          this.dateLoan = dateLoan;
-          this.deliveryLoan = deliveryLoan;
           this.car = car;
-          this.listDetail = listDetail;
+          this.detail = detail;
      }
 }

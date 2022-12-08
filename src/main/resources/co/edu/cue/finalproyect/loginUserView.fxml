@@ -22,12 +22,12 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #000000;">
                      <children>
-                        <TextField fx:id="userLogin" layoutX="276.0" layoutY="216.0" prefHeight="26.0" prefWidth="298.0" />
-                        <Label layoutX="155.0" layoutY="221.0" text="Usuario" textFill="WHITE">
+                        <TextField fx:id="userLogin" layoutX="256.0" layoutY="212.0" prefHeight="26.0" prefWidth="298.0" />
+                        <Label layoutX="135.0" layoutY="217.0" text="Usuario" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="NONE" />
                            </cursor></Label>
-                        <Label layoutX="290.0" layoutY="136.0" text="Iniciar Sección " textFill="WHITE">
+                        <Label layoutX="281.0" layoutY="127.0" text="Iniciar Sección " textFill="WHITE">
                            <font>
                               <Font name="Broadway" size="30.0" />
                            </font>
@@ -35,9 +35,9 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Label>
-                        <Label layoutX="156.0" layoutY="291.0" text="Contraseña " textFill="WHITE" />
-                        <PasswordField fx:id="pasLogin" layoutX="272.0" layoutY="295.0" prefHeight="26.0" prefWidth="301.0" />
-                        <Button layoutX="364.0" layoutY="373.0" mnemonicParsing="false" onAction="#login" prefHeight="34.0" prefWidth="98.0" style="-fx-background-color: #EC1616;" text="Ingresar">
+                        <Label layoutX="136.0" layoutY="287.0" text="Contraseña " textFill="WHITE" />
+                        <PasswordField fx:id="pasLogin" layoutX="252.0" layoutY="291.0" prefHeight="26.0" prefWidth="301.0" />
+                        <Button layoutX="344.0" layoutY="369.0" mnemonicParsing="false" onAction="#login" prefHeight="34.0" prefWidth="98.0" style="-fx-background-color: #EC1616;" text="Ingresar">
                            <font>
                               <Font size="18.0" />
                            </font></Button>
@@ -46,7 +46,7 @@
                               <Image url="@photos/logo%20(2).png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="39.0" layoutY="44.0" mnemonicParsing="false" onAction="#backTable" style="-fx-background-color: #EC1616;" text="Volver" />
+                        <Button layoutX="34.0" layoutY="31.0" mnemonicParsing="false" onAction="#backTable" style="-fx-background-color: #EC1616;" text="Volver" />
                         <ImageView fitHeight="108.0" fitWidth="146.0" layoutX="649.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@photos/logo.png" />

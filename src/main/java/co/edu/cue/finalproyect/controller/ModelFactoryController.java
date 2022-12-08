@@ -1,8 +1,6 @@
 package co.edu.cue.finalproyect.controller;
 
-import co.edu.cue.finalproyect.model.Car;
-import co.edu.cue.finalproyect.model.Client;
-import co.edu.cue.finalproyect.model.Person;
+import co.edu.cue.finalproyect.model.*;
 import co.edu.cue.finalproyect.service.Impl.RentCarServiceImpl;
 import co.edu.cue.finalproyect.service.ModelFactoryControllerService;
 import javafx.collections.ObservableList;
@@ -12,8 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class ModelFactoryController implements ModelFactoryControllerService {
@@ -39,7 +39,7 @@ public class ModelFactoryController implements ModelFactoryControllerService {
         public HashMap<String,Car> getHashMap(){
             return rentCarService.getCarService().getCarHashMap();
         }
-        public void init (){
+        public void init () throws IOException {
             rentCarService.getPersonService().init();
         }
         public void createCar(String name, String type, String ubication, String plate, double price, String model,
@@ -55,11 +55,11 @@ public class ModelFactoryController implements ModelFactoryControllerService {
         public Boolean comprobationAdmi(ArrayList<Person> arrayList){
             return rentCarService.getLoginService().comprobationAdmi(arrayList);
         }
-        public void createClient(String name, String id, String cellphone, String gender, String user, String password, String direction, String location){
+        public void createClient(String name, String id, String cellphone, String gender, String user, String password, String direction, String location) throws IOException {
             rentCarService.getPersonService().createClient(name, id, cellphone, gender, user, password, direction, location);
         }
        public void carSelect(Car car) {
-           rentCarService.getLoanService().carSelect(car);
+           rentCarService.getCarService().getCarSelect();
        }
         public void  select(TableView<Car> tblCar, TextField nameCar, TextField ubicationCar, TextField priceCar, TextField plateCar, ChoiceBox brandCar, ChoiceBox modelCar, ChoiceBox stateCar, ChoiceBox typeCar){
              rentCarService.getCarService().selectCar(tblCar, nameCar, ubicationCar, priceCar, plateCar, brandCar, modelCar, stateCar, typeCar);
@@ -91,5 +91,17 @@ public class ModelFactoryController implements ModelFactoryControllerService {
         public Client getClient(){
             return rentCarService.getPersonService().getClient();
         }
-
+        public void fillTable(ObservableList<Car> observableList){
+             rentCarService.getCarService().fillTable(observableList);
+        }
+        public List<ClientDTO> genereListDTOs(){
+            return rentCarService.getPersonService().genereListDTOs();
+        }
+        public void createLoan(Client debtorName,  Car car, boolean chair, boolean porta,String placeCollected,
+                               String plateDelivery,String typeCount, String countNumber){
+            rentCarService.getLoanService().createLoan(debtorName,car,chair,porta,placeCollected,plateDelivery,typeCount,countNumber);
+        }
+        public ArrayList<LoanDTO> genereDTO(){
+            return rentCarService.getLoanService().genereDTO();
+        }
 }

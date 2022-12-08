@@ -1,8 +1,11 @@
 package co.edu.cue.finalproyect.controller;
 
 import co.edu.cue.finalproyect.HelloApplication;
+import co.edu.cue.finalproyect.HelloController;
 import co.edu.cue.finalproyect.model.Car;
 import co.edu.cue.finalproyect.model.Client;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.css.FontCssMetaData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +22,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoanCarViewController implements Initializable {
+     private boolean chair;
+    private boolean porta;
+    private String countType;
+    private String Aplate;
+    private String Bplate;
+    private String countNumbrer;
+
     ModelFactoryController mfc= ModelFactoryController.getInstance();
+    ObservableList<String> placeAObservable = FXCollections.observableArrayList("Aeropuerto","Centro de atención","Terminal");
+    ObservableList<String> placeBObservable = FXCollections.observableArrayList("Aeropuerto","Centro de atención","Terminal");
+    ObservableList<String> typeCObservable = FXCollections.observableArrayList("Credito","Debito","PSE");
 
     @FXML
     private Label brandCar;
@@ -43,13 +56,17 @@ public class LoanCarViewController implements Initializable {
     private Label priceCar;
 
     @FXML
-    void returnSelect(ActionEvent event) {
-
+    void returnSelect(ActionEvent event) throws IOException {
+       HelloApplication.tableV(event);
     }
 
     @FXML
-    private ChoiceBox<?> typeCount;
+    private ChoiceBox<String> typeCount;
+    @FXML
+    private ChoiceBox<String> placeAChoisebox;
 
+    @FXML
+    private ChoiceBox<String> placeBChoisebox;
     @FXML
     void editUser(ActionEvent event) throws IOException {
         HelloApplication.user(event);
@@ -57,19 +74,23 @@ public class LoanCarViewController implements Initializable {
 
     @FXML
     void readyLoan(ActionEvent event) {
-
+        getData();
+        mfc.createLoan(mfc.getClient(),mfc.getCarSelect(),chair,porta,Aplate,Bplate,countType,countNumbrer);
     }
     @FXML
     void asiento(ActionEvent event) {
-
+        chair = true;
     }
     @FXML
     void porta(ActionEvent event) {
-
+        porta = true;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        placeAChoisebox.setItems(placeAObservable);
+        placeBChoisebox.setItems(placeBObservable);
+        typeCount.setItems(typeCObservable);
         setLabel();
     }
     public void setLabel(){
@@ -77,9 +98,16 @@ public class LoanCarViewController implements Initializable {
         Client client = mfc.getClient();
         nameUser.setText(client.getName());
         idUser.setText(client.getId());
-/*        nameCar.setText(car.getName());
+/*       nameCar.setText(car.getName());
         imageCar.setImage(car.getLinkImage().getImage());
         priceCar.setText(String.valueOf(car.getPrice()));
         brandCar.setText(car.getBrand());*/
     }
+    public void getData(){
+        Aplate = String.valueOf(placeAChoisebox.getValue());
+        Bplate = String.valueOf(placeBChoisebox.getValue());
+        countNumbrer = String.valueOf(numberCount.getText());
+        countType =  String.valueOf(typeCount.getValue());
+    }
+
 }

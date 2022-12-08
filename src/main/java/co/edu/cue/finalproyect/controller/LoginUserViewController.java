@@ -5,6 +5,7 @@ import co.edu.cue.finalproyect.model.Client;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -16,7 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginUserViewController implements Initializable {
-    Client client;
+    Client client = new Client();
     ModelFactoryController mf = ModelFactoryController.getInstance();
     ObservableList<String> genderList = FXCollections.observableArrayList("Femenino","Masculino","No especifica");
     String name;
@@ -71,19 +72,21 @@ public class LoginUserViewController implements Initializable {
 
     @FXML
     void login(ActionEvent event) throws IOException {
-        Boolean admi = mf.comprobationAdmi(mf.getArrayList());
+        Boolean cli = mf.comprobationAdmi(mf.getArrayList());
+        System.out.println(cli);
         Boolean user = mf.login(userLogin.getText(),pasLogin.getText(),mf.getArrayList());
-        if(user && admi){
-            //mf.identi(pasLogin.getText());
-            HelloApplication.cee(event);
-        } else if (user) {
+        System.out.println(user);
+        if(user && cli){
             mf.identi(pasLogin.getText());
             HelloApplication.ViewLn(event);
+        } else if (user) {
+            //mf.identi(pasLogin.getText());
+            HelloApplication.menu(event);
         }
     }
 
     @FXML
-    void register(ActionEvent event) {
+    void register(ActionEvent event) throws IOException {
         Boolean user = mf.comprobationPassword(passUserRegis.getText(),comprobePass.getText());
         if (user){
             getData();
@@ -93,13 +96,13 @@ public class LoginUserViewController implements Initializable {
     }
     @FXML
     void getData(){
-      name=  nameUser.getText();
-      id = ccUser.getText();
-      cell = cellUser.getText();
-      gender = genderUser.getValue();
-      gmail = emailUser.getText();
-      password = passUserRegis.getText();
-      direction = directionUser.getText();
+      name=  String.valueOf(nameUser.getText());
+      id = String.valueOf(ccUser.getText());
+      cell = String.valueOf(cellUser.getText());
+      gender = String.valueOf(genderUser.getValue());
+      gmail = String.valueOf(emailUser.getText());
+      password = String.valueOf(passUserRegis.getText());
+      direction = String.valueOf(directionUser.getText());
       code = String.valueOf(codeCountry.getValue());
       loadClient();
     }
@@ -113,6 +116,7 @@ public class LoginUserViewController implements Initializable {
         client.setId(id);
         client.setLocation(code);
         client.setDirection(direction);
+        mf.setClient(client);
     }
 
     @FXML
@@ -130,7 +134,7 @@ public class LoginUserViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        mf.init();
+       // mf.init();
         genderUser.setItems(genderList);
     }
 }

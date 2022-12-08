@@ -14,16 +14,19 @@ public class LoginServiceImpl implements LoginService {
         this.arrayList = arrayList;
         boolean pass = validatePass(passwordRegis);
         boolean us = validateUser(userRegis);
-        return (pass == true && us == true) ? true: false;
+        System.out.println(pass +"///"+ us);
+        return (pass == true && us == true) ? true : false;
     }
     public Boolean validatePass(String passwordRegis){
         for (Person person:arrayList) {
+            System.out.println(person.getPassword());
             return person.getPassword().equals(passwordRegis) ? true: false;
         }
         return false;
     }
     public Boolean validateUser(String userRegis){
         for (Person person:arrayList) {
+            System.out.println(person.getUser());
             return  person.getUser().equals(userRegis) ? true : false;
         }
         return false;

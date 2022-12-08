@@ -18,10 +18,10 @@
          </font>
       </Label>
       <ChoiceBox fx:id="cityChoise" layoutX="311.0" layoutY="217.0" prefHeight="25.0" prefWidth="339.0" />
-      <DatePicker layoutX="144.0" layoutY="311.0" prefHeight="60.0" prefWidth="219.0" promptText="Desde" />
-      <DatePicker layoutX="431.0" layoutY="311.0" prefHeight="60.0" prefWidth="219.0" promptText="Hasta" />
-      <ChoiceBox fx:id="countryChoise" layoutX="313.0" layoutY="137.0" prefHeight="25.0" prefWidth="339.0" />
-      <Button layoutX="375.0" layoutY="463.0" mnemonicParsing="false" onAction="#searchResult" opacity="0.93" prefHeight="29.0" prefWidth="110.0" text="Buscar">
+      <DatePicker fx:id="sinceDate" layoutX="144.0" layoutY="311.0" prefHeight="60.0" prefWidth="219.0" promptText="Desde" />
+      <DatePicker fx:id="untilDate" layoutX="431.0" layoutY="311.0" prefHeight="60.0" prefWidth="219.0" promptText="Hasta" />
+      <ChoiceBox fx:id="countryChoise" layoutX="313.0" layoutY="137.0" prefHeight="25.0" prefWidth="339.0" style="-fx-background-color: #8c6262;" />
+      <Button layoutX="375.0" layoutY="463.0" mnemonicParsing="false" onAction="#searchResult" opacity="0.93" prefHeight="29.0" prefWidth="110.0" style="-fx-background-color: #EC1616;" text="Buscar">
          <effect>
             <Glow />
          </effect>
@@ -32,7 +32,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Button layoutX="35.0" layoutY="33.0" mnemonicParsing="false" onAction="#loginAdmi" style="-fx-background-color: #000000;" text="Administrativo" textFill="WHITE" underline="true">
+      <Button layoutX="35.0" layoutY="33.0" mnemonicParsing="false" onAction="#loginAdmi" style="-fx-background-color: #000000;" text="Administrativo" textFill="#cf6f6f" underline="true">
          <font>
             <Font size="14.0" />
          </font></Button>
@@ -46,9 +46,9 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="696.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="134.0" fitWidth="120.0" layoutX="726.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@photos/logo%20(2).png" />
+            <Image url="@photos/logo.png" />
          </image>
       </ImageView>
    </children>

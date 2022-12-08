@@ -7,22 +7,37 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 public class StartViewController implements Initializable {
+    CompletableFuture completableFuture = new CompletableFuture<>();
+    ModelFactoryController mfc =  ModelFactoryController.getInstance();
 
-    ObservableList<String> country = FXCollections.observableArrayList("Ecuador","Colombia");
-    ObservableList<String> city = FXCollections.observableArrayList("Armenia","Bogota","Pereira");
+    ObservableList<String> citys = FXCollections.observableArrayList("Armenia","Bogota","Pereira");
 
-    ObservableList<String> cityEc = FXCollections.observableArrayList("Manta","Guayaquil","Quito");
+
+    LocalDate dateSince;
+    LocalDate dateUntil;
+    String country;
+    String city;
+
     @FXML
     private ChoiceBox<String> cityChoise;
 
+    @FXML
+    private DatePicker sinceDate;
+
+    @FXML
+    private DatePicker untilDate;
     @FXML
     private ChoiceBox<String> countryChoise;
 
@@ -33,6 +48,7 @@ public class StartViewController implements Initializable {
 
     @FXML
     void searchResult(ActionEvent event) throws IOException {
+        getData();
         HelloApplication.tableV(event);
     }
 
@@ -40,21 +56,21 @@ public class StartViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         countryChoise.setValue("Colombia");
         cityChoise.setValue("Bogota");
-        cityChoise.setItems(city);
+        cityChoise.setItems(citys);
+        CompletableFuture.runAsync(()-> {
+            try {
+                mfc.init();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
-    public boolean es(){
-        if(!countryChoise.getValue().equals(null)){
-            return true;
-        }
-        return false;
+
+    public void getData(){
+        dateSince = sinceDate.getValue();
+        dateUntil = untilDate.getValue();
+        city = String.valueOf(cityChoise.getValue());
+        country = String.valueOf(countryChoise.getValue());
     }
-    public void select () {
-        if (countryChoise.getValue().equals("Colombia")) {
-            cityChoise.setValue("Bogota");
-            cityChoise.setItems(city);
-        } else if (countryChoise.getValue().equals("Ecuador")) {
-            cityChoise.setValue("Quito");
-            cityChoise.setItems(cityEc);
-        }
-    }
+
 }

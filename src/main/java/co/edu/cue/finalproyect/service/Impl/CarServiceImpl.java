@@ -1,6 +1,7 @@
 package co.edu.cue.finalproyect.service.Impl;
 
 import co.edu.cue.finalproyect.model.Car;
+import co.edu.cue.finalproyect.model.LoanDTO;
 import co.edu.cue.finalproyect.persistencia.Persistencia;
 import co.edu.cue.finalproyect.service.CarService;
 import javafx.collections.FXCollections;
@@ -8,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
@@ -22,6 +24,12 @@ public class CarServiceImpl implements CarService {
     }
 
     HashMap<String,Car> carHashMap = new HashMap<>();
+    public void init(){
+        Image image = new Image("C:/Users/Public/Documents/ws-programacion1/FinalProyect/src/main/resources/co/edu/cue/finalproyect/photos/kia.jpg");
+        ImageView img = new ImageView(image);
+        Car car = new Car(img,"der","der","plastico","Arm",2,"ford","ne",false);
+        carHashMap.put("der",car);
+    }
 
     public HashMap<String, Car> getCarHashMap() {
         return carHashMap;
@@ -38,7 +46,7 @@ public class CarServiceImpl implements CarService {
         carHashMap.put(plate,car);
        // Persistencia.saveCar(carHashMap,thumbUrl);
 
-        Persistencia.guardarRecursoBancoXML(car);
+       // Persistencia.guardarRecursoBancoXML(car);
         carObservableList.add(car);
         tableView.setItems(carObservableList);
         tableView.refresh();
@@ -120,6 +128,14 @@ public class CarServiceImpl implements CarService {
         stateCar.setValue(carSelect.isState());
         typeCar.setValue(carSelect.getType());
     }
+
+    public void fillTable(ObservableList<Car> observableList){
+        //init();
+        for (Map.Entry<String, Car> entrada: carHashMap.entrySet()) {
+            observableList.add(entrada.getValue());
+        }
+    }
+
     // recorre por medio de un foreach
  /*   public void wander(){
         for(Map.Entry<String, Car> entrada: carHashMap.entrySet()) {

@@ -2,6 +2,8 @@ package co.edu.cue.finalproyect.controller;
 
 import co.edu.cue.finalproyect.HelloApplication;
 import co.edu.cue.finalproyect.execeptions.Alert;
+import co.edu.cue.finalproyect.execeptions.Excepcions;
+import co.edu.cue.finalproyect.execeptions.Validations;
 import co.edu.cue.finalproyect.model.Car;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +28,7 @@ import java.util.ResourceBundle;
 
 public class CarCeeViewController implements Initializable {
     ModelFactoryController mfc= ModelFactoryController.getInstance();
+    Validations validations = new Validations();
     ObservableList<Car> carObservableList = FXCollections.observableArrayList();
     ObservableList<String> typeCars = FXCollections.observableArrayList("Camioneta","Deportivo","Automovil","Campero","Sedan","Hatchback");
     ObservableList<String> modelCars = FXCollections.observableArrayList("Sandero","Picanto kwid");
@@ -117,10 +120,10 @@ public class CarCeeViewController implements Initializable {
            try{
                 if(file.getName().contains(".jpg") || file.getName().contains(".png")){
                     thumbUrl = file.toURI().toURL().toString();
+                    System.out.println(file.toURI().toURL().toString());
                     imgLoad = new Image(thumbUrl);
                     System.out.println(thumbUrl);
                     imageCar.setImage(imgLoad);
-
                 }
            } catch (MalformedURLException e) {
                throw new RuntimeException(e);

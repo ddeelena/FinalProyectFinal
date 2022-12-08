@@ -1,3 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="17.0.5" class="java.beans.XMLDecoder">
+ <object class="co.edu.cue.finalproyect.model.Client">
+  <void property="cellphone">
+   <string></string>
+  </void>
+  <void property="direction">
+   <string></string>
+  </void>
+  <void property="gender">
+   <string>null</string>
+  </void>
+  <void property="id">
+   <string></string>
+  </void>
+  <void property="location">
+   <string>null</string>
+  </void>
+  <void property="name">
+   <string>derly</string>
+  </void>
+  <void property="password">
+   <string>123</string>
+  </void>
+  <void property="user">
+   <string>derly</string>
+  </void>
+ </object>
 </java>

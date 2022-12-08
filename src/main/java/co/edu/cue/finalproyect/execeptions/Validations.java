@@ -1,16 +1,26 @@
 package co.edu.cue.finalproyect.execeptions;
 
 public class Validations {
-    private static boolean isNumInteger(String name) {
+    public   void isNumInteger(String name) throws Excepcions {
         try
         {
             Integer.parseInt(name);
-            return true;
+
         }
         catch (NumberFormatException nfe)
         {
-            return false;
+            throw  new Excepcions("Debe ingresar caracteres solamente");
         }
     }
+    public boolean isString(Integer num){
+        try {
+            Integer.parseInt(String.valueOf(num));
+            return false;
+        }catch (NumberFormatException err){
+            return true;
+        }
+    }
+    public void searchFull(){
 
+    }
 }

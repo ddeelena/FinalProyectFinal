@@ -1,7 +1,9 @@
 package co.edu.cue.finalproyect.controller;
 
 import co.edu.cue.finalproyect.HelloApplication;
-import co.edu.cue.finalproyect.model.Car;
+import co.edu.cue.finalproyect.execeptions.Alert;
+import co.edu.cue.finalproyect.model.Client;
+import co.edu.cue.finalproyect.model.ClientDTO;
 import co.edu.cue.finalproyect.model.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,22 +12,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ListUserViewController implements Initializable {
-    ObservableList<Person> userObservableList= FXCollections.observableArrayList();
+    ObservableList<ClientDTO> userObservableList= FXCollections.observableArrayList();
     ModelFactoryController mfc= ModelFactoryController.getInstance();
 
 
     @FXML
     private TableColumn<?, ?> cellphoneUser;
 
-    @FXML
-    private TableColumn<?, ?> cityUser;
+
 
     @FXML
     private TableColumn<?, ?> idUser;
@@ -34,7 +37,7 @@ public class ListUserViewController implements Initializable {
     private TableColumn<?, ?> nameUser;
 
     @FXML
-    private TableView<Person> tableUser;
+    private TableView<ClientDTO> tableUser;
 
     @FXML
     void back(ActionEvent event) throws IOException {
@@ -43,13 +46,20 @@ public class ListUserViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        nameUser.setCellValueFactory(new PropertyValueFactory<>("name"));
+        idUser.setCellValueFactory(new PropertyValueFactory<>("id"));
+        cellphoneUser.setCellValueFactory(new PropertyValueFactory<>("cellphone"));
         load();
         tableUser.setItems(userObservableList);
     }
     public void load(){
-         ArrayList<Person> list = mfc.getArrayList();
-        for (Person cli: list) {
-            userObservableList.add(cli);
+        try{
+            List<ClientDTO> list = mfc.genereListDTOs();
+            for (ClientDTO cli: list) {
+                userObservableList.add((ClientDTO) cli);
+            }
+        }catch (ClassCastException e){
+
         }
     }
 }
