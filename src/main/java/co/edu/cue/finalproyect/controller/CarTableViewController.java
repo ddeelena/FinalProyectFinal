@@ -4,7 +4,7 @@ import co.edu.cue.finalproyect.HelloApplication;
 import co.edu.cue.finalproyect.execeptions.Alert;
 import co.edu.cue.finalproyect.model.Car;
 import co.edu.cue.finalproyect.model.Client;
-import co.edu.cue.finalproyect.persistencia.Persistencia;
+import co.edu.cue.finalproyect.persistence.carPersistence.Persistencia;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,16 +13,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class CarTableViewController implements Initializable {
@@ -54,8 +49,8 @@ public class CarTableViewController implements Initializable {
 
     @FXML
     void selectCar(ActionEvent event) throws IOException {
-        Car car = mfc.getCarSelect(tableCar);
-        mfc.carSelect(car);
+        mfc.carSelectTable(tableCar);
+        //mfc.carSelect(car);
         skipLogin(event);
     }
 
@@ -64,25 +59,28 @@ public class CarTableViewController implements Initializable {
         name.setCellValueFactory(new PropertyValueFactory<>("name"));
         price.setCellValueFactory(new PropertyValueFactory<>("price"));
         brand.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        photo.setCellValueFactory(new PropertyValueFactory<>("linkPhoto"));
+        photo.setCellValueFactory(new PropertyValueFactory<>("linkImage"));
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
        // init();
          mfc.fillTable(data);
          tableCar.setItems(data);
-/*        try {
+        try {
             cargarTable();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }catch (NullPointerException e){
-            System.out.println("arreglo vacio");
-        }*/
+            alert.alertError("Lo sentimos los datos no se pudieron cargar","Error");
+        }
     }
     public  void cargarTable() throws IOException {
-        Car car = Persistencia.cargarRecursoTiendaXML();
-        if(car == null){
-            alert.alertError("Lo sentimos los datos no se pudieron cargar","Error");
+        HashMap<String,Car> cars = Persistencia.loadClient();
+        if(cars == null){
+           // alert.alertError("Lo sentimos los datos no se pudieron cargar","Error");
         }else {
-            data.add(car);
+            for (Map.Entry<String, Car> car: cars.entrySet()) {
+                data.add(car.getValue());
+                editPropertis(car.getValue());
+            }
             tableCar.setItems(data);
             tableCar.refresh();
         }
@@ -97,25 +95,10 @@ public class CarTableViewController implements Initializable {
             HelloApplication.login(event);
         }
     }
-    public void init(){
-        ImageView imageView = new ImageView();
-        ImageView linkImage;
-        final FileChooser fileChooser = new FileChooser();
-        File file =  fileChooser.showOpenDialog(new Stage());
-        try{
-            if(file.getName().contains(".jpg") || file.getName().contains(".png")){
-               String thumbUrl = file.toURI().toURL().toString();
-                System.out.println(file.toURI().toURL().toString());
-               Image imgLoad = new Image(thumbUrl);
-               imageView.setImage(imgLoad);
-                System.out.println(imageView);
-                linkImage = new ImageView(imageView.getImage());
-                Car car = new Car(linkImage,"der","der","plastico","Arm",2,"ford","ne",false);
-                HashMap<String,Car> carHashMap = mfc.getHashMap();
-                carHashMap.put("der",car);
-            }
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
-        }
+    @FXML
+    void editPropertis(Car car){
+        car.getLinkImage().setFitHeight(120);
+        car.getLinkImage().setFitWidth(120);
+
     }
 }

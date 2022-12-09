@@ -1,7 +1,6 @@
 package co.edu.cue.finalproyect.controller;
 
 import co.edu.cue.finalproyect.HelloApplication;
-import co.edu.cue.finalproyect.HelloController;
 import co.edu.cue.finalproyect.model.Car;
 import co.edu.cue.finalproyect.model.Client;
 import javafx.collections.FXCollections;
@@ -75,7 +74,7 @@ public class LoanCarViewController implements Initializable {
     @FXML
     void readyLoan(ActionEvent event) {
         getData();
-        mfc.createLoan(mfc.getClient(),mfc.getCarSelect(),chair,porta,Aplate,Bplate,countType,countNumbrer);
+        mfc.createLoan(mfc.getClient(),mfc.getCarSelectTable(),chair,porta,Aplate,Bplate,countType,countNumbrer);
     }
     @FXML
     void asiento(ActionEvent event) {
@@ -94,7 +93,7 @@ public class LoanCarViewController implements Initializable {
         setLabel();
     }
     public void setLabel(){
-        Car car = mfc.getCarSelect();
+        Car car = mfc.getCarSelectTable();
         Client client = mfc.getClient();
         nameUser.setText(client.getName());
         idUser.setText(client.getId());

@@ -158,11 +158,7 @@ public class CarCeeViewController implements Initializable {
 
     @FXML
     void removeImage(ActionEvent event) {
-
-    }
-    @FXML
-    void seeClient(ActionEvent event) throws IOException {
-        HelloApplication.seeC(event);
+        imageCar.setImage(null);
     }
 
     @FXML

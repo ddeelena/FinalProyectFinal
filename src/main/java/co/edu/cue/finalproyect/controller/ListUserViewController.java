@@ -57,6 +57,7 @@ public class ListUserViewController implements Initializable {
             List<ClientDTO> list = mfc.genereListDTOs();
             System.out.println(list.size());
             for (ClientDTO cli: list) {
+                System.out.println(cli.getName());
                 userObservableList.add(cli);
             }
         }catch (ClassCastException e){

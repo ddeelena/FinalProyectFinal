@@ -21,14 +21,13 @@ public class LoginServiceImpl implements LoginService {
     }
     public Boolean validatePass(String passwordRegis){
         for (Client person:arrayList) {
-            System.out.println(person.getPassword());
             return person.getPassword().equals(passwordRegis) ? true: false;
         }
         return false;
     }
     public Boolean validateUser(String userRegis){
-        for (Client person:arrayList) {
-            System.out.println(person.getUser());
+        for (Client person: arrayList) {
+            System.out.println(person.getUser()+"////"+userRegis);
             return  person.getUser().equals(userRegis) ? true : false;
         }
         return false;
@@ -41,7 +40,6 @@ public class LoginServiceImpl implements LoginService {
         this.arrayListAdmi = arrayList;
         boolean pass = validatePassAdmi(passwordRegis);
         boolean us = validateUserAdmi(userRegis);
-        System.out.println(us+"Admi");
         return (pass == true && us == true) ? true : false;
     }
     public Boolean validatePassAdmi(String passwordRegis){

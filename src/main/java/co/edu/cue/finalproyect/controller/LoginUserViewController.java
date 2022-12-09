@@ -20,6 +20,7 @@ public class LoginUserViewController implements Initializable {
     Client client = new Client();
     ModelFactoryController mf = ModelFactoryController.getInstance();
     ObservableList<String> genderList = FXCollections.observableArrayList("Femenino","Masculino","No especifica");
+    ObservableList<String> countryList = FXCollections.observableArrayList("Colombia","Argentina","Estados Unidos","Peru","Francia","Italia");
     String name;
     String password;
     String id;
@@ -75,7 +76,7 @@ public class LoginUserViewController implements Initializable {
         Boolean user = mf.login(userLogin.getText(),pasLogin.getText(),mf.getArrayList());
         System.out.println(userLogin.getText());
         Boolean admi = mf.loginAdmi(userLogin.getText(),pasLogin.getText(),mf.getAdministrativeArrayList());
-        System.out.println(admi);
+        System.out.println("ADMISTRADORRR LOGIN"+userLogin.getText());
         if(user ){
             mf.identi(pasLogin.getText());
             HelloApplication.ViewLn(event);
@@ -134,8 +135,9 @@ public class LoginUserViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       // mf.init();
         genderUser.setItems(genderList);
+        codeCountry.setValue("Colombia");
+        codeCountry.setItems(countryList);
     }
 }
 

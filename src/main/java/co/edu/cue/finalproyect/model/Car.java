@@ -159,6 +159,7 @@ public class Car {
         this.state = state;
     }
 
+
     public Car(ImageView linkImage, String plate, String name, String type, String ubication, double price, String model, String brand, boolean state) {
         this.linkImage = linkImage;
         this.plate = plate;

@@ -1,4 +1,4 @@
-package co.edu.cue.finalproyect.persistencia;
+package co.edu.cue.finalproyect.persistence.personPersistence;
 
 import co.edu.cue.finalproyect.model.Client;
 import co.edu.cue.finalproyect.model.Person;
@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static co.edu.cue.finalproyect.persistencia.ArchivoUtil.salvarRecursoSerializadoXML;
+
 
 public class PeristencePerson {
 
@@ -40,13 +40,13 @@ public class PeristencePerson {
 
                 miCliente.setPassword((linea.split("@")[0]));
                 miCliente.setName(linea.split("@")[1]);
-                miCliente.setDirection(linea.split("@")[2]);
-                miCliente.setLocation(linea.split("@")[3]);
-                miCliente.setCellphone(linea.split("@")[4]);
-                miCliente.setGender(linea.split("@")[5]);
-                miCliente.setCondition(Boolean.parseBoolean(linea.split("@")[6]));
-                miCliente.setUser(linea.split("@")[7]);
-                miCliente.setId(linea.split("@")[8]);
+                miCliente.setCellphone(linea.split("@")[2]);
+                miCliente.setGender(linea.split("@")[3]);
+                miCliente.setCondition(Boolean.parseBoolean(linea.split("@")[4]));
+                miCliente.setUser(linea.split("@")[5]);
+                miCliente.setId(linea.split("@")[6]);
+                miCliente.setDirection(linea.split("@")[7]);
+                miCliente.setLocation(linea.split("@")[8]);
 
                 System.out.println("Cliente"+miCliente);
                 clientes.add(miCliente);

@@ -59,17 +59,18 @@ public class ModelFactoryController implements ModelFactoryControllerService {
         public void createClient(String name, String id, String cellphone, String gender, String user, String password, String direction, String location) throws IOException {
             rentCarService.getPersonService().createClient(name, id, cellphone, gender, user, password, direction, location);
         }
-       public void carSelect(Car car) {
-           rentCarService.getCarService().getCarSelect();
-       }
+
         public void  select(TableView<Car> tblCar, TextField nameCar, TextField ubicationCar, TextField priceCar, TextField plateCar, ChoiceBox brandCar, ChoiceBox modelCar, ChoiceBox stateCar, ChoiceBox typeCar){
              rentCarService.getCarService().selectCar(tblCar, nameCar, ubicationCar, priceCar, plateCar, brandCar, modelCar, stateCar, typeCar);
         }
         public void edit(Car car, TableView<Car> tblCar,ObservableList carObservableList){
             rentCarService.getCarService().edit(car,tblCar,carObservableList);
         }
-        public Car getCarSelect(TableView<Car> tblCar){
-           return rentCarService.getCarService().getCarSelect(tblCar);
+        public void carSelectTable(TableView<Car> tblCar){
+            rentCarService.getCarService().carSelectTable(tblCar);
+        }
+        public Car getCarSelectTable(){
+            return rentCarService.getCarService().getCarSelectTable();
         }
         public void eliminate(TableView<Car> tblCar, ObservableList carObservableList){
             rentCarService.getCarService().eliminate(tblCar,carObservableList);
@@ -86,9 +87,6 @@ public class ModelFactoryController implements ModelFactoryControllerService {
         public void identi(String pass){
             rentCarService.getPersonService().identi(pass);
         }
-        public Car getCarSelect(){
-            return rentCarService.getCarService().getCarSelect();
-        }
         public Client getClient(){
             return rentCarService.getPersonService().getClient();
         }
@@ -102,7 +100,7 @@ public class ModelFactoryController implements ModelFactoryControllerService {
                                String plateDelivery,String typeCount, String countNumber){
             rentCarService.getLoanService().createLoan(debtorName,car,chair,porta,placeCollected,plateDelivery,typeCount,countNumber);
         }
-        public ArrayList<LoanDTO> genereDTO(){
+        public List<LoanDTO> genereDTO(){
             return rentCarService.getLoanService().genereDTO();
         }
         public void selectLoan(TableView<LoanDTO> tblLoan){
@@ -113,5 +111,11 @@ public class ModelFactoryController implements ModelFactoryControllerService {
         }
         public ArrayList<Administrative> getAdministrativeArrayList(){
             return rentCarService.getPersonService().getAdministrativeArrayList();
+        }
+        public void setDateLoan(LocalDate dateLoan){
+            rentCarService.getLoanService().setDateLoan(dateLoan);
+        }
+        public void setDeliveryLoan(LocalDate deliveryLoan){
+            rentCarService.getLoanService().setDeliveryLoan(deliveryLoan);
         }
 }

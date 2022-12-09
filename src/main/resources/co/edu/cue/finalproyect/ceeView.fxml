@@ -98,10 +98,5 @@
             <Font name="Broadway" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="742.0" layoutY="33.0" mnemonicParsing="false" onAction="#seeClient" style="-fx-background-color: #EC1616;" text="Ver clientes" textFill="#fffbfb">
-         <font>
-            <Font name="Broadway" size="13.0" />
-         </font>
-      </Button>
    </children>
 </Pane>

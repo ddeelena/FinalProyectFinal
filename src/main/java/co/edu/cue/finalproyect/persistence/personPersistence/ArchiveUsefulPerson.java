@@ -1,7 +1,5 @@
-package co.edu.cue.finalproyect.persistencia;
+package co.edu.cue.finalproyect.persistence.personPersistence;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
 import java.io.*;
 import java.util.ArrayList;
 

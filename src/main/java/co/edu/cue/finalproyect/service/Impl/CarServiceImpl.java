@@ -1,10 +1,8 @@
 package co.edu.cue.finalproyect.service.Impl;
 
 import co.edu.cue.finalproyect.model.Car;
-import co.edu.cue.finalproyect.model.LoanDTO;
-import co.edu.cue.finalproyect.persistencia.Persistencia;
+import co.edu.cue.finalproyect.persistence.carPersistence.Persistencia;
 import co.edu.cue.finalproyect.service.CarService;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableView;
@@ -14,39 +12,39 @@ import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 
 
 public class CarServiceImpl implements CarService {
     Car carSelect= new Car();
-
-    public Car getCarSelect() {
-        return carSelect;
-    }
-
+    Car carSelectTable = new Car();
     HashMap<String,Car> carHashMap = new HashMap<>();
-    public void init(){
-        Image image = new Image("C:/Users/Public/Documents/ws-programacion1/FinalProyect/src/main/resources/co/edu/cue/finalproyect/photos/kia.jpg");
-        ImageView img = new ImageView(image);
-        Car car = new Car(img,"der","der","plastico","Arm",2,"ford","ne",false);
-        carHashMap.put("der",car);
+
+    public Car getCarSelectTable() {
+        return carSelectTable;
     }
+
 
     public HashMap<String, Car> getCarHashMap() {
         return carHashMap;
     }
-    //crea un carro  y lo añade a la lista
-    // En ese caso como son carros me parecio interesante que el identificador fuera la misma placa aunque como la logica
-    // no esta desarrolladora no se que tan optimo podría ser que este sea el identificador y no un dato
 
     public void create(String name, String type, String ubication, String plate, double price, String model,
                        String brand, TableView<Car> tableView, ImageView linkimage, String thumbUrl, boolean state,ObservableList carObservableList) throws IOException {
-        //carArrayList.add(new Car(linkImage,plate,name,type,ubication,price,model,brand));
         Car car = new Car(linkimage,plate,name, type, ubication, price, model,brand, state);
         System.out.println(linkimage);
         carHashMap.put(plate,car);
-       // Persistencia.saveCar(carHashMap,thumbUrl);
 
-       // Persistencia.guardarRecursoBancoXML(car);
+        CompletableFuture.runAsync(()-> {
+            try {
+                Persistencia.saveClient(carHashMap);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        addTable(tableView,carObservableList,car);
+    }
+    public void addTable(TableView<Car> tableView,ObservableList carObservableList, Car car){
         carObservableList.add(car);
         tableView.setItems(carObservableList);
         tableView.refresh();
@@ -56,8 +54,9 @@ public class CarServiceImpl implements CarService {
         carSelect = tblCar.getSelectionModel().getSelectedItem();
         fillInput(nameCar,ubicationCar,priceCar,plateCar,brandCar,modelCar,stateCar,typeCar);
     }
-    public Car getCarSelect(TableView<Car> tblCar){
-        return carSelect = tblCar.getSelectionModel().getSelectedItem();
+
+    public void carSelectTable(TableView<Car> tblCar){
+         carSelectTable = tblCar.getSelectionModel().getSelectedItem();
     }
     public void search(TableView<Car> tblCar, String plate, TextField nameCar, TextField ubicationCar, TextField priceCar,TextField plateCar, ChoiceBox brandCar, ChoiceBox modelCar, ChoiceBox stateCar, ChoiceBox typeCar){
         for(Map.Entry<String, Car> entrada: carHashMap.entrySet()) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="17.0.5" class="java.beans.XMLDecoder">
-    <object class="co.edu.cue.finalproyect.model.Car">
+    <object class="src.main.java.co.edu.cue.finalproyect.model.Proveedor">
+
     </object>
 </java>

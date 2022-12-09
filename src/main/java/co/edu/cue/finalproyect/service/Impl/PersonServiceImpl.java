@@ -3,8 +3,7 @@ package co.edu.cue.finalproyect.service.Impl;
 import co.edu.cue.finalproyect.model.Administrative;
 import co.edu.cue.finalproyect.model.Client;
 import co.edu.cue.finalproyect.model.ClientDTO;
-import co.edu.cue.finalproyect.model.Person;
-import co.edu.cue.finalproyect.persistencia.PeristencePerson;
+import co.edu.cue.finalproyect.persistence.personPersistence.PeristencePerson;
 import co.edu.cue.finalproyect.service.PersonService;
 
 import java.io.IOException;
@@ -35,7 +34,13 @@ public class PersonServiceImpl implements PersonService {
     }
 
     public void init () throws IOException {
-        arrayList = PeristencePerson.cargarClientes();
+       CompletableFuture.runAsync(()-> {
+           try {
+               arrayList = PeristencePerson.cargarClientes();
+           } catch (IOException e) {
+               throw new RuntimeException(e);
+           }
+       });
         administrativeArrayList.add(new Administrative("Der","1902","cell","Femenino","delena","delena",false));
     }
 
@@ -72,15 +77,16 @@ public class PersonServiceImpl implements PersonService {
     }
 
     public List<ClientDTO> genereListDTOs(){
+        System.out.println(arrayList.size());
         return  arrayList.stream()
                 .map(c -> new ClientDTO(c.getName(),c.getId(),c.getCellphone()))
                 .collect(Collectors.toList());
     }
     public void identi(String pass){
-        for (Person cli: arrayList) {
+        for (Client cli: arrayList) {
             //cli.getPassword().equals(pass) ? client = (Client) cli : ;
             if(cli.getPassword().equals(pass)){
-                client = (Client) cli;
+                client =  cli;
                 client.setCondition(true);
             }
         }

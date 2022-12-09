@@ -19,7 +19,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 public class StartViewController implements Initializable {
-    CompletableFuture completableFuture = new CompletableFuture<>();
     ModelFactoryController mfc =  ModelFactoryController.getInstance();
     ObservableList<String> citys = FXCollections.observableArrayList("Armenia","Bogota","Pereira");
 
@@ -71,6 +70,12 @@ public class StartViewController implements Initializable {
         dateUntil = untilDate.getValue();
         city = String.valueOf(cityChoise.getValue());
         country = String.valueOf(countryChoise.getValue());
+        setDateLoan();
+    }
+    public void setDateLoan(){
+        mfc.setDateLoan(dateUntil);
+        mfc.setDeliveryLoan(dateSince);
+
     }
 
 }
