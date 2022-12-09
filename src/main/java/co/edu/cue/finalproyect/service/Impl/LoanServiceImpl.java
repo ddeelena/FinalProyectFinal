@@ -1,24 +1,28 @@
 package co.edu.cue.finalproyect.service.Impl;
 
 import co.edu.cue.finalproyect.model.*;
+import co.edu.cue.finalproyect.persistence.loanPersistence.PersistenceLoan;
 import co.edu.cue.finalproyect.service.LoanService;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableView;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 public class LoanServiceImpl implements LoanService {
+    Loan loan = new Loan();
     Loan loanselect = new Loan();
     LoanDTO loanDtoSelect = new LoanDTO();
     ArrayList<Loan> loanList = new ArrayList<>();
     LocalDate dateLoan;
     LocalDate deliveryLoan;
 
-    public Loan getLoanselect() {
-        return loanselect;
+    public Loan getLoan() {
+        return loan;
     }
 
     public LoanDTO getLoanDtoSelect() {
@@ -29,13 +33,6 @@ public class LoanServiceImpl implements LoanService {
         return loanList;
     }
 
-    public LocalDate getDateLoan() {
-        return dateLoan;
-    }
-
-    public LocalDate getDeliveryLoan() {
-        return deliveryLoan;
-    }
 
     public void setDateLoan(LocalDate dateLoan) {
         this.dateLoan = dateLoan;
@@ -48,8 +45,24 @@ public class LoanServiceImpl implements LoanService {
     public  void createLoan(Client debtorName, Car car, boolean chair, boolean porta, String placeCollected,
                             String plateDelivery, String typeCount, String countNumber){
         Detail detail = new Detail(car.getPrice(), chair,porta,placeCollected,placeCollected,dateLoan,deliveryLoan, typeCount,countNumber);
-        Loan loan = new Loan(debtorName, car, detail);
+        loan = new Loan(debtorName, car, detail);
         loanList.add(loan);
+       CompletableFuture.runAsync(()-> {
+           try {
+               PersistenceLoan.saveLoan(loanList);
+           } catch (IOException e) {
+               throw new RuntimeException(e);
+           }
+       });
+    }
+    public void initLoan(){
+        CompletableFuture.runAsync(()->{
+            try {
+                loanList = PersistenceLoan.loadLoan();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
     public void select(TableView<LoanDTO> tblLoan){
        loanDtoSelect = tblLoan.getSelectionModel().getSelectedItem();
@@ -70,6 +83,7 @@ public class LoanServiceImpl implements LoanService {
         }
     }
     public List<LoanDTO> genereDTO(){
+        System.out.println(loanList.size());
       return  loanList.stream()
               .map(l -> new LoanDTO(l.getCar().getPrice(),l.getCar().getPlate(),l.getDetail().getDateLoan(), l.getDetail().getDeliveryLoan(), l.getDebtorName().getName(),l.getCar().getName()))
               .collect(Collectors.toList());

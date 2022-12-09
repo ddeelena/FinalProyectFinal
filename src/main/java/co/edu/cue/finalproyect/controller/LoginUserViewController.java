@@ -1,6 +1,7 @@
 package co.edu.cue.finalproyect.controller;
 
 import co.edu.cue.finalproyect.HelloApplication;
+import co.edu.cue.finalproyect.execeptions.Alert;
 import co.edu.cue.finalproyect.model.Client;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +19,7 @@ import java.util.ResourceBundle;
 
 public class LoginUserViewController implements Initializable {
     Client client = new Client();
+    Alert alert = new Alert();
     ModelFactoryController mf = ModelFactoryController.getInstance();
     ObservableList<String> genderList = FXCollections.observableArrayList("Femenino","Masculino","No especifica");
     ObservableList<String> countryList = FXCollections.observableArrayList("Colombia","Argentina","Estados Unidos","Peru","Francia","Italia");
@@ -83,8 +85,11 @@ public class LoginUserViewController implements Initializable {
         } else if (admi) {
             //mf.identi(pasLogin.getText());
             HelloApplication.menu(event);
+        }else {
+                alert.alertError("Por favor verifique sus datos de inicio","Datos incorrectos");
+            }
         }
-    }
+
 
     @FXML
     void register(ActionEvent event) throws IOException {

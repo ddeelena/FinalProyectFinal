@@ -1,6 +1,8 @@
 package co.edu.cue.finalproyect.controller;
 
 import co.edu.cue.finalproyect.HelloApplication;
+import co.edu.cue.finalproyect.execeptions.Excepcions;
+import co.edu.cue.finalproyect.execeptions.Validations;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +21,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 public class StartViewController implements Initializable {
+    Validations validations = new Validations();
+
     ModelFactoryController mfc =  ModelFactoryController.getInstance();
     ObservableList<String> citys = FXCollections.observableArrayList("Armenia","Bogota","Pereira");
 
@@ -57,7 +61,6 @@ public class StartViewController implements Initializable {
         cityChoise.setItems(citys);
         CompletableFuture.runAsync(()-> {
             try {
-                System.out.println("llamado");
                 mfc.init();
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -67,6 +70,7 @@ public class StartViewController implements Initializable {
 
     public void getData(){
         dateSince = sinceDate.getValue();
+        System.out.println(sinceDate.getValue());
         dateUntil = untilDate.getValue();
         city = String.valueOf(cityChoise.getValue());
         country = String.valueOf(countryChoise.getValue());

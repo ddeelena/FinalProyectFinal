@@ -28,13 +28,11 @@ import java.util.ResourceBundle;
 
 public class CarCeeViewController implements Initializable {
     ModelFactoryController mfc= ModelFactoryController.getInstance();
-    Validations validations = new Validations();
     ObservableList<Car> carObservableList = FXCollections.observableArrayList();
     ObservableList<String> typeCars = FXCollections.observableArrayList("Camioneta","Deportivo","Automovil","Campero","Sedan","Hatchback");
     ObservableList<String> modelCars = FXCollections.observableArrayList("Sandero","Picanto kwid");
     ObservableList<String> brandCars = FXCollections.observableArrayList("Mercedes","Kia","Chevrolet","Ford");
     ObservableList<String> stateCars = FXCollections.observableArrayList("Disponible","No Disponible");
-    private  Car car;
     private  String name;
     private String type;
     private String ubication;
@@ -147,7 +145,6 @@ public class CarCeeViewController implements Initializable {
     void editCar(ActionEvent event) {
         getData();
         Car car = new Car(linkImage,plate,name,type,ubication,price,model,brand,state);
-      //Car car =   mfc.select(tableCar,nameCar,ubicationCar,priceCar,plateCar,brandCar,modelCar,stateChoise,typeCar);
         mfc.edit(car,tableCar,carObservableList);
     }
 

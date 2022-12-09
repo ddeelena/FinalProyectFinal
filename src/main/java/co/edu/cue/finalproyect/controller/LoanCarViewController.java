@@ -9,10 +9,7 @@ import javafx.css.FontCssMetaData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 
@@ -66,23 +63,22 @@ public class LoanCarViewController implements Initializable {
 
     @FXML
     private ChoiceBox<String> placeBChoisebox;
+
+    @FXML
+    private CheckBox checkBabyChair;
+
+    @FXML
+    private CheckBox checkBicycleCarrier;
     @FXML
     void editUser(ActionEvent event) throws IOException {
         HelloApplication.user(event);
     }
 
     @FXML
-    void readyLoan(ActionEvent event) {
+    void readyLoan(ActionEvent event) throws IOException {
         getData();
         mfc.createLoan(mfc.getClient(),mfc.getCarSelectTable(),chair,porta,Aplate,Bplate,countType,countNumbrer);
-    }
-    @FXML
-    void asiento(ActionEvent event) {
-        chair = true;
-    }
-    @FXML
-    void porta(ActionEvent event) {
-        porta = true;
+        HelloApplication.invoice(event);
     }
 
     @Override
@@ -107,6 +103,8 @@ public class LoanCarViewController implements Initializable {
         Bplate = String.valueOf(placeBChoisebox.getValue());
         countNumbrer = String.valueOf(numberCount.getText());
         countType =  String.valueOf(typeCount.getValue());
+        chair = checkBabyChair.isSelected();
+        porta = checkBicycleCarrier.isSelected();
     }
 
 }

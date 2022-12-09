@@ -118,4 +118,10 @@ public class ModelFactoryController implements ModelFactoryControllerService {
         public void setDeliveryLoan(LocalDate deliveryLoan){
             rentCarService.getLoanService().setDeliveryLoan(deliveryLoan);
         }
+        public Loan getLoan(){
+            return rentCarService.getLoanService().getLoan();
+        }
+        public void initLoan(){
+            rentCarService.getLoanService().initLoan();
+        }
 }

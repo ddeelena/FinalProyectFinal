@@ -16,38 +16,6 @@ import java.util.Map;
 public class Persistencia{
 
 
-    //------------------------------------SERIALIZACION  y XML
-
-/*    public static final String RUTA_ARCHIVO_TIENDA = "src/main/resources/car.xml";
-
-    public static Proveedor cargarRecursoTiendaXML() {
-        System.out.println("PERSISTENCIAS  cargar");
-
-        Proveedor proveedor = null;
-        try {
-            proveedor = (Proveedor) ArchivoUtil.cargarRecursoSerializadoXML(RUTA_ARCHIVO_TIENDA);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        System.out.println(proveedor.getCarHashMap().isEmpty());
-        return proveedor;
-    }
-
-
-
-    public static void guardarRecursoBancoXML(Proveedor tienda) {
-        System.out.println("PERSISTENCIAS  GUARDAR");
-
-        try {
-            //System.out.println("++++++++++"+tienda.getName()+"+++++++++");
-           ArchivoUtil.salvarRecursoSerializadoXML(RUTA_ARCHIVO_TIENDA, tienda);
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }*/
-
     public static final String RUTA_ARCHIVO_CLIENTES = "src/main/resources/car.txt";
 
     public static void saveClient(HashMap<String,Car> carHashMap) throws IOException {

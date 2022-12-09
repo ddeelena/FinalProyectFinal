@@ -17,23 +17,23 @@
             <Image url="@photos/kia.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="nameUser" contentDisplay="CENTER" layoutX="263.0" layoutY="71.0" prefHeight="32.0" prefWidth="125.0" style="-fx-text-fill: #ffffff;" text="Nombre Usuario" textFill="WHITE" underline="true">
+      <Label fx:id="nameUser" contentDisplay="CENTER" layoutX="399.0" layoutY="70.0" prefHeight="32.0" prefWidth="125.0" style="-fx-text-fill: #ffffff;" text="Nombre Usuario" textFill="WHITE" underline="true">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="idUser" layoutX="263.0" layoutY="147.0" prefHeight="25.0" prefWidth="102.0" text="Documento" textFill="WHITE" underline="true">
+      <Label fx:id="idUser" layoutX="399.0" layoutY="146.0" prefHeight="25.0" prefWidth="102.0" text="Documento" textFill="WHITE" underline="true">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="nameCar" contentDisplay="CENTER" layoutX="41.0" layoutY="218.0" prefHeight="17.0" prefWidth="189.0" style="-fx-text-fill: #ffffff;" text="Nombre Carro" textFill="WHITE">
+      <Label fx:id="nameCar" contentDisplay="CENTER" layoutX="273.0" layoutY="216.0" prefHeight="17.0" prefWidth="189.0" style="-fx-text-fill: #ffffff;" text="Nombre Carro" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="priceCar" layoutX="41.0" layoutY="271.0" text="Precio " textFill="WHITE">
+      <Label fx:id="priceCar" layoutX="271.0" layoutY="265.0" text="Precio " textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="brandCar" layoutX="42.0" layoutY="320.0" text="Marca" textFill="WHITE">
+      <Label fx:id="brandCar" layoutX="272.0" layoutY="313.0" text="Marca" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Label>
@@ -67,7 +67,7 @@
             <Font size="14.0" />
          </font></Label>
       <Button layoutX="20.0" layoutY="22.0" mnemonicParsing="false" onAction="#returnSelect" style="-fx-background-color: #EC1616;" text="Atrás " />
-      <Button layoutX="406.0" layoutY="72.0" mnemonicParsing="false" onAction="#editUser" prefHeight="30.0" prefWidth="36.0">
+      <Button layoutX="542.0" layoutY="71.0" mnemonicParsing="false" onAction="#editUser" prefHeight="30.0" prefWidth="36.0">
          <graphic>
             <ImageView fitHeight="150.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -96,5 +96,30 @@
       <Label layoutX="531.0" layoutY="478.0" text="\$ 50000" textFill="WHITE" />
       <Label layoutX="646.0" layoutY="349.0" text="Porta Bicicletas " textFill="WHITE" />
       <Label layoutX="666.0" layoutY="478.0" text="\$ 25000" textFill="WHITE" />
+      <Label layoutX="274.0" layoutY="76.0" text="Nombre Uuario: " textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="274.0" layoutY="149.0" text="Documento:" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="94.0" layoutY="216.0" text="Nombre Carro:" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="85.0" layoutY="265.0" text="Precio carro por día:" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="96.0" layoutY="313.0" text="Marca del Carro:" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

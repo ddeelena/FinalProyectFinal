@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Detail {
 
-    private double price;
+    private double price=0;
     private boolean chair;
     private  boolean porta;
     private String placeCollect;
@@ -110,10 +110,12 @@ public class Detail {
         additionPrice();
     }
     public void day(){
-        int milisecondsByDay = 86400000;
-         days = ((deliveryLoan.lengthOfYear()-dateLoan.lengthOfYear()) / milisecondsByDay);
-         price*=days;
+        System.out.println(price);
+        System.out.println(deliveryLoan.getDayOfYear());
+        System.out.println(deliveryLoan.hashCode());
+         days = ((dateLoan.getDayOfYear()-deliveryLoan.getDayOfYear()));
          System.out.println(days);
+         price*=days;
     }
     public  void additionPrice(){
         if(chair && porta){

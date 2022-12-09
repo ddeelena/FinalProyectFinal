@@ -1,6 +1,7 @@
 package co.edu.cue.finalproyect.execeptions;
 
 public class Validations {
+    Alert alert = new Alert();
     public   void isNumInteger(String name) throws Excepcions {
         try
         {
@@ -20,7 +21,9 @@ public class Validations {
             return true;
         }
     }
-    public void searchFull(){
-
+    public void searchFull(String valid){
+        if(valid.equals(null)){
+            alert.alertError("Debes llenar todos los datos","No lleno todos los datos");
+        }
     }
 }

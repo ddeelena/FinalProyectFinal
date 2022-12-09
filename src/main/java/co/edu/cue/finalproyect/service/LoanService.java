@@ -13,8 +13,8 @@ public interface LoanService {
                     String plateDelivery,String typeCount, String countNumber);
     void eliminateLoan(TableView<LoanDTO> tblLoan, ObservableList<LoanDTO> observableList);
     void select(TableView<LoanDTO> tblLoan);
-    LocalDate getDeliveryLoan();
-    LocalDate getDateLoan();
     void setDeliveryLoan(LocalDate deliveryLoan);
     void setDateLoan(LocalDate dateLoan);
+    Loan getLoan();
+    void initLoan();
 }
