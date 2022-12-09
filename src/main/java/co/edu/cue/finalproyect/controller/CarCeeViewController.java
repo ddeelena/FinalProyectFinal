@@ -1,9 +1,7 @@
 package co.edu.cue.finalproyect.controller;
 
 import co.edu.cue.finalproyect.HelloApplication;
-import co.edu.cue.finalproyect.execeptions.Alert;
-import co.edu.cue.finalproyect.execeptions.Excepcions;
-import co.edu.cue.finalproyect.execeptions.Validations;
+import co.edu.cue.finalproyect.exceptions.Alert;
 import co.edu.cue.finalproyect.model.Car;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -103,7 +101,7 @@ public class CarCeeViewController implements Initializable {
     Alert alert = new Alert();
     @FXML
     void turnOfTable(ActionEvent event) throws IOException {
-        HelloApplication.tableV(event);
+        HelloApplication.menu(event);
     }
 
     @FXML

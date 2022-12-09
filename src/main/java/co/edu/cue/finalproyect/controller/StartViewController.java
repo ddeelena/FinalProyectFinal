@@ -1,8 +1,8 @@
 package co.edu.cue.finalproyect.controller;
 
 import co.edu.cue.finalproyect.HelloApplication;
-import co.edu.cue.finalproyect.execeptions.Excepcions;
-import co.edu.cue.finalproyect.execeptions.Validations;
+import co.edu.cue.finalproyect.exceptions.Alert;
+import co.edu.cue.finalproyect.exceptions.Validations;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,15 +13,14 @@ import javafx.scene.control.DatePicker;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 
 public class StartViewController implements Initializable {
     Validations validations = new Validations();
+    Alert alert = new Alert();
+    boolean emphy;
 
     ModelFactoryController mfc =  ModelFactoryController.getInstance();
     ObservableList<String> citys = FXCollections.observableArrayList("Armenia","Bogota","Pereira");
@@ -50,7 +49,9 @@ public class StartViewController implements Initializable {
     @FXML
     void searchResult(ActionEvent event) throws IOException {
         getData();
-        HelloApplication.tableV(event);
+        if(!emphy){
+            HelloApplication.tableV(event);
+        }
     }
 
     @Override
@@ -63,15 +64,16 @@ public class StartViewController implements Initializable {
             try {
                 mfc.init();
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                alert.alertError("No se puedo cargar los datos, por favor intentalo más tarde","Datos vacios");
+                throw new RuntimeException("No se pudo cargar los datos");
             }
         });
     }
 
     public void getData(){
         dateSince = sinceDate.getValue();
-        System.out.println(sinceDate.getValue());
         dateUntil = untilDate.getValue();
+        emphy= validations.searchFull(String.valueOf(untilDate.getValue()),String.valueOf(sinceDate.getValue()));
         city = String.valueOf(cityChoise.getValue());
         country = String.valueOf(countryChoise.getValue());
         setDateLoan();

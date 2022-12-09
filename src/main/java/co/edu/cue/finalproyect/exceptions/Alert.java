@@ -1,4 +1,4 @@
-package co.edu.cue.finalproyect.execeptions;
+package co.edu.cue.finalproyect.exceptions;
 
 public class Alert  {
 

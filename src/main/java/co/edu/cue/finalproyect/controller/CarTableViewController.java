@@ -1,7 +1,9 @@
 package co.edu.cue.finalproyect.controller;
 
 import co.edu.cue.finalproyect.HelloApplication;
-import co.edu.cue.finalproyect.execeptions.Alert;
+import co.edu.cue.finalproyect.exceptions.Alert;
+import co.edu.cue.finalproyect.exceptions.Excepcions;
+import co.edu.cue.finalproyect.exceptions.Validations;
 import co.edu.cue.finalproyect.model.Car;
 import co.edu.cue.finalproyect.model.Client;
 import co.edu.cue.finalproyect.persistence.carPersistence.Persistencia;
@@ -22,6 +24,7 @@ import java.util.ResourceBundle;
 
 public class CarTableViewController implements Initializable {
     Alert alert = new Alert();
+    Validations validations = new Validations();
     ModelFactoryController mfc= ModelFactoryController.getInstance();
     private final  ObservableList<Car> data = FXCollections.observableArrayList();
 
@@ -48,9 +51,9 @@ public class CarTableViewController implements Initializable {
     }
 
     @FXML
-    void selectCar(ActionEvent event) throws IOException {
+    void selectCar(ActionEvent event) throws IOException, Excepcions {
         mfc.carSelectTable(tableCar);
-        //mfc.carSelect(car);
+        validations.vacio(mfc.getCarSelectTable());
         skipLogin(event);
     }
 

@@ -1,9 +1,8 @@
 package co.edu.cue.finalproyect.service.Impl;
 
-import co.edu.cue.finalproyect.execeptions.Alert;
+import co.edu.cue.finalproyect.exceptions.Alert;
 import co.edu.cue.finalproyect.model.Administrative;
 import co.edu.cue.finalproyect.model.Client;
-import co.edu.cue.finalproyect.model.Person;
 import co.edu.cue.finalproyect.service.LoginService;
 
 import java.util.ArrayList;

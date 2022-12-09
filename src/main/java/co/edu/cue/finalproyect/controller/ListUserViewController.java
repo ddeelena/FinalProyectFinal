@@ -1,10 +1,7 @@
 package co.edu.cue.finalproyect.controller;
 
 import co.edu.cue.finalproyect.HelloApplication;
-import co.edu.cue.finalproyect.execeptions.Alert;
-import co.edu.cue.finalproyect.model.Client;
 import co.edu.cue.finalproyect.model.ClientDTO;
-import co.edu.cue.finalproyect.model.Person;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,7 +13,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
